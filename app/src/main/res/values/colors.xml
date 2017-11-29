@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#03A9F4</color>
+    <color name="colorPrimaryDark">#03A9F4</color>
+    <color name="colorAccent">#FF4081</color>
+`
+    <!--推荐的颜色-->
+    <color name="groom">#fff</color>
+    <!--推荐背景色-->
+    <color name="groombacgroud">#03A9F4</color>
+    <!--字体颜色-->
+    <color name="textcolor">#1296DB</color>
+    <color name="textcolor_yuan">#7B7B7B</color>
+    <color name="frogetextcolor">#E51C23</color>
+    <color name="froget_extcolor">#000</color>
+    <color name="back">#cccc</color>
+</resources>
