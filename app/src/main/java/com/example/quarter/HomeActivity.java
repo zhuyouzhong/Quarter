@@ -1,5 +1,6 @@
 package com.example.quarter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -17,11 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.quarter.base.BaseActivity;
 import com.example.quarter.bean.UserBean;
 import com.example.quarter.fragment.Forge_Fragment;
 import com.example.quarter.fragment.Groom_Fragment;
 import com.example.quarter.fragment.Video_Fragment;
+import com.example.quarter.myapp.MyApp;
 import com.example.quarter.presenter.UserPresenter;
 import com.example.quarter.utils.MyInterceptor;
 import com.example.quarter.view.UserView;
@@ -86,22 +89,72 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
         iv_send = findViewById(R.id.iv_send);
         initOnClick();
 
-        if(!TextUtils.isEmpty(MyInterceptor.tk)||!TextUtils.isEmpty(MyInterceptor.id))
+        SharedPreferences token = MyApp.context.getSharedPreferences("token", Context.MODE_PRIVATE);
+        String tk = token.getString("tk", "");
+        SharedPreferences uid = MyApp.context.getSharedPreferences("uid", Context.MODE_PRIVATE);
+        String id = uid.getString("id", "");
+        if(!TextUtils.isEmpty(tk)||!TextUtils.isEmpty(id))
         {
-            presenter.UserPersenterSuccess(MyInterceptor.id);
+            presenter.UserPersenterSuccess(id);
+        }
+        else
+        {
+            rl_left_run.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(HomeActivity.this, "请登录", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(HomeActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
         }
     }
+
     @Override
-    public void UserSuccess(UserBean userBean) {
-        System.out.println("------"+userBean.getMsg());
-        String icon = userBean.getData().getIcon();
-        String nickname = userBean.getData().getNickname();
-        Glide.with(HomeActivity.this).load(icon).into(csiv);
-        Glide.with(HomeActivity.this).load(icon).into(draw_csiv);
-        tv_nickname.setText(nickname);
+    public void UserSuccess(final UserBean value) {
+            String icon = value.getData().getIcon();
+            String nickname = value.getData().getNickname();
+            if(icon!=null)
+            {
+                Glide.with(HomeActivity.this).load(icon)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true).dontAnimate().into(csiv);
+                Glide.with(HomeActivity.this).load(icon)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true).dontAnimate().into(draw_csiv);
+            }
+
+            tv_nickname.setText(nickname);
+
+            rl_left_run.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(value.getCode().equals("0"))
+                {
+                    Toast.makeText(HomeActivity.this, "個人中心", Toast.LENGTH_SHORT).show();
+                }
+                if(value.getCode().equals("2"))
+                {
+                    Toast.makeText(HomeActivity.this, "Token過期", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(HomeActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+
     }
 
+    @Override
+    public void UserFaiul(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void UserError(Throwable e) {
+        Toast.makeText(this, "网络有误", Toast.LENGTH_SHORT).show();
+    }
 
     private void initOnClick() {
         draw.setScrimColor(Color.TRANSPARENT);
@@ -164,23 +217,7 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
 
             }
         });
-        rl_left_run.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!TextUtils.isEmpty(MyInterceptor.id))
-                {
-                    Toast.makeText(HomeActivity.this, "個人中心", Toast.LENGTH_SHORT).show();
-                 }
-                if(TextUtils.isEmpty(MyInterceptor.id))
-                {
-                    Toast.makeText(HomeActivity.this, "Token過期", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(HomeActivity.this,MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
 
-            }
-        });
         iv_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -6,7 +6,9 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.quarter.HomeActivity;
 import com.example.quarter.R;
 import com.example.quarter.bean.ForgeBean;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -32,12 +36,14 @@ public class MyXRecyclViewAdapter extends RecyclerView.Adapter<MyXRecyclViewAdap
 
     private List<ForgeBean.DataBean> list;
     private Context context;
-    private int a=0;
-    public MyXRecyclViewAdapter(List<ForgeBean.DataBean> list, Context context) {
+    private int width;
+    private int heightPixels;
+    public MyXRecyclViewAdapter(List<ForgeBean.DataBean> list, Context context,int width,int heightPixels) {
 
         this.list = list;
         this.context = context;
-
+        this.width=width;
+        this.heightPixels=heightPixels;
     }
 
     @Override
@@ -50,8 +56,10 @@ public class MyXRecyclViewAdapter extends RecyclerView.Adapter<MyXRecyclViewAdap
     public void onBindViewHolder(final MyXRecyclViewAdapter.MyViewHolder holder, final int position) {
 
         holder.setIsRecyclable(false);
+        Glide.with(context).load(list.get(position).getUser().getIcon())
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true).dontAnimate().into(holder.forge_item_icon);
 
-        Glide.with(context).load(list.get(position).getUser().getIcon()).into(holder.forge_item_icon);
         holder.forge_item_nickname.setText(list.get(position).getUser().getNickname());
         holder.forge_item_createtime.setText(list.get(position).getCreateTime());
         holder.forge_item_content.setText(list.get(position).getContent());
@@ -67,12 +75,12 @@ public class MyXRecyclViewAdapter extends RecyclerView.Adapter<MyXRecyclViewAdap
         final ObjectAnimator animator7= ObjectAnimator.ofFloat(holder.ll_san, "alpha", 0f,1f);
 
 
-        final ObjectAnimator rotation = ObjectAnimator.ofFloat(holder.iv_jia, "rotation", 0f, -180f);
+        final ObjectAnimator rotation = ObjectAnimator.ofFloat(holder.iv_jian, "rotation", 0f, -180f);
         final ObjectAnimator rotation1 = ObjectAnimator.ofFloat(holder.ll_yi, "translationX", -80f,0f);
         final ObjectAnimator rotation2 = ObjectAnimator.ofFloat(holder.ll_er, "translationX", -160f,0f);
         final ObjectAnimator rotation3= ObjectAnimator.ofFloat(holder.ll_san, "translationX", -240f,0f);
 
-        final ObjectAnimator rotation4 = ObjectAnimator.ofFloat(holder.iv_jia, "rotation", 0f, -180f);
+        final ObjectAnimator rotation4 = ObjectAnimator.ofFloat(holder.iv_jian, "rotation", 0f, -180f);
         final ObjectAnimator rotation5 = ObjectAnimator.ofFloat(holder.ll_yi, "alpha", 1f,0f);
         final ObjectAnimator rotation6 = ObjectAnimator.ofFloat(holder.ll_er, "alpha", 1f,0f);
         final ObjectAnimator rotation7= ObjectAnimator.ofFloat(holder.ll_san, "alpha", 1f,0f);
@@ -81,13 +89,13 @@ public class MyXRecyclViewAdapter extends RecyclerView.Adapter<MyXRecyclViewAdap
         animator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-                holder.iv_jia.setImageResource(R.mipmap.icon_packup);
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
 
-
+                holder.iv_jia.setVisibility(View.GONE);
+                holder.iv_jian.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -103,12 +111,11 @@ public class MyXRecyclViewAdapter extends RecyclerView.Adapter<MyXRecyclViewAdap
         rotation.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-                holder.iv_jia.setImageResource(R.mipmap.icon_open);
             }
-
             @Override
             public void onAnimationEnd(Animator animator) {
-
+                holder.iv_jia.setVisibility(View.VISIBLE);
+                holder.iv_jian.setVisibility(View.GONE);
             }
 
             @Override
@@ -121,28 +128,27 @@ public class MyXRecyclViewAdapter extends RecyclerView.Adapter<MyXRecyclViewAdap
 
             }
         });
-
         holder.iv_jia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                a++;
-                if(a%2==1){//第一次点击是实现伸出效果
-                    AnimatorSet animSet = new AnimatorSet();//动画集合
-                    holder.ll_yi.setVisibility(View.VISIBLE);
-                    holder.ll_er.setVisibility(View.VISIBLE);
-                    holder.ll_san.setVisibility(View.VISIBLE);
-                    animSet.play(animator).with(animator1).with(animator2).with(animator3);
-                    animSet.play(animator4).with(animator5).with(animator6).with(animator7);
-                    animSet.setDuration(1000);
-                    animSet.start();
-                }else{//再点击一次实现缩回效果
-                    AnimatorSet animSet1 = new AnimatorSet();//动画集合
-                    animSet1.play(rotation).with(rotation1).with(rotation2).with(rotation3);
-                    animSet1.play(rotation4).with(rotation5).with(rotation6).with(rotation7);
-                    animSet1.setDuration(1000);
-                    animSet1.start();
-                }
-
+                AnimatorSet animSet = new AnimatorSet();//动画集合
+                holder.ll_yi.setVisibility(View.VISIBLE);
+                holder.ll_er.setVisibility(View.VISIBLE);
+                holder.ll_san.setVisibility(View.VISIBLE);
+                animSet.play(animator).with(animator1).with(animator2).with(animator3);
+                animSet.play(animator4).with(animator5).with(animator6).with(animator7);
+                animSet.setDuration(500);
+                animSet.start();
+            }
+        });
+        holder.iv_jian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AnimatorSet animSet1 = new AnimatorSet();//动画集合
+                animSet1.play(rotation).with(rotation1).with(rotation2).with(rotation3);
+                animSet1.play(rotation4).with(rotation5).with(rotation6).with(rotation7);
+                animSet1.setDuration(500);
+                animSet1.start();
             }
         });
 
@@ -152,6 +158,39 @@ public class MyXRecyclViewAdapter extends RecyclerView.Adapter<MyXRecyclViewAdap
                 Toast.makeText(context, "条目为+"+position, Toast.LENGTH_SHORT).show();
             }
         });
+
+        ArrayList<String> iv_list=new ArrayList<>();
+        String imgUrls = list.get(position).getImgUrls();
+         if(imgUrls!=null)
+         {
+             String[] split = imgUrls.split("\\|");
+             for (int i = 0; i < split.length; i++) {
+                 iv_list.add(split[i]);
+             }
+             if(iv_list.size()==1)
+             {
+                 MyItemRecycleView myItemRecycleView=new MyItemRecycleView(iv_list,context,width,heightPixels);
+                 holder.iv_rlv.setLayoutManager(new GridLayoutManager(context,1));
+                 holder.iv_rlv.setAdapter(myItemRecycleView);
+             }
+             else if(iv_list.size()==2)
+             {
+                 MyItemRecycleView myItemRecycleView=new MyItemRecycleView(iv_list,context,width,heightPixels);
+                 holder.iv_rlv.setLayoutManager(new GridLayoutManager(context,2));
+                 holder.iv_rlv.setAdapter(myItemRecycleView);
+             }
+             else
+             {
+                 MyItemRecycleView myItemRecycleView=new MyItemRecycleView(iv_list,context,width,heightPixels);
+                 holder.iv_rlv.setLayoutManager(new GridLayoutManager(context,3));
+                 holder.iv_rlv.setAdapter(myItemRecycleView);
+             }
+
+
+         }
+
+
+
     }
 
     @Override
@@ -170,6 +209,7 @@ public class MyXRecyclViewAdapter extends RecyclerView.Adapter<MyXRecyclViewAdap
         private final LinearLayout ll_yi;
         private final LinearLayout ll_er;
         private final LinearLayout ll_san;
+        private final RecyclerView iv_rlv;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -183,6 +223,8 @@ public class MyXRecyclViewAdapter extends RecyclerView.Adapter<MyXRecyclViewAdap
             ll_yi = itemView.findViewById(R.id.ll_yi);
             ll_er = itemView.findViewById(R.id.ll_er);
             ll_san = itemView.findViewById(R.id.ll_san);
+
+            iv_rlv = itemView.findViewById(R.id.iv_rlv);
         }
 
 

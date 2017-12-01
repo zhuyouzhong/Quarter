@@ -11,7 +11,7 @@ public class ForgeBean {
     /**
      * msg : 获取段子列表成功
      * code : 0
-     * data : [{"commentNum":null,"content":"jinghzongyoushankoujizhe","createTime":"2017-11-28T10:05:27","jid":39,"praiseNum":null,"shareNum":null,"uid":551,"user":{"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T10:39:26","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/551.jpg","latitude":null,"longitude":null,"mobile":"15988888888","money":0,"nickname":"你猜","password":"111111","praiseNum":null,"token":"AD7D76CB63F7A5E17C64A14A4FE588D1","uid":551,"userId":null,"username":"15988888888"}},{"commentNum":null,"content":"今天第一天上班。。有点小紧张呢~~我帅气吗？！~","createTime":"2017-11-27T19:37:11","jid":38,"praiseNum":null,"shareNum":null,"uid":117,"user":{"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T11:03:47","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/117.jpg","latitude":null,"longitude":null,"mobile":"17319318196","money":0,"nickname":"简中义","password":"456789","praiseNum":null,"token":"4D41BF84737055A49B6D10F3019302E5","uid":117,"userId":null,"username":"17319318196"}},{"commentNum":null,"content":"庭有枇杷树，吾妻死之年所手植也，今已亭亭如盖矣.今伐之,为博小娘子一笑","createTime":"2017-11-27T19:26:45","jid":37,"praiseNum":null,"shareNum":null,"uid":100,"user":{"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T10:54:00","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/100.jpg","latitude":null,"longitude":null,"mobile":"13775854299","money":0,"nickname":"节能君","password":"123123","praiseNum":null,"token":"2169FEE6F3AC42D662EFF44250A0BD87","uid":100,"userId":null,"username":"13775854299"}},{"commentNum":null,"content":"京中有善口技者,自此君王不早朝","createTime":"2017-11-27T19:23:08","jid":36,"praiseNum":null,"shareNum":null,"uid":100,"user":{"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T10:54:00","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/100.jpg","latitude":null,"longitude":null,"mobile":"13775854299","money":0,"nickname":"节能君","password":"123123","praiseNum":null,"token":"2169FEE6F3AC42D662EFF44250A0BD87","uid":100,"userId":null,"username":"13775854299"}},{"commentNum":null,"content":"大家好,我叫B数,我又回来了,希望大家心里有我","createTime":"2017-11-27T18:59:49","jid":35,"praiseNum":null,"shareNum":null,"uid":100,"user":{"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T10:54:00","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/100.jpg","latitude":null,"longitude":null,"mobile":"13775854299","money":0,"nickname":"节能君","password":"123123","praiseNum":null,"token":"2169FEE6F3AC42D662EFF44250A0BD87","uid":100,"userId":null,"username":"13775854299"}},{"commentNum":null,"content":"大家好,我叫B数,希望大家心里有我","createTime":"2017-11-27T18:59:27","jid":34,"praiseNum":null,"shareNum":null,"uid":100,"user":{"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T10:54:00","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/100.jpg","latitude":null,"longitude":null,"mobile":"13775854299","money":0,"nickname":"节能君","password":"123123","praiseNum":null,"token":"2169FEE6F3AC42D662EFF44250A0BD87","uid":100,"userId":null,"username":"13775854299"}},{"commentNum":null,"content":"大家好,我叫B数,希望大家心里有我","createTime":"2017-11-27T18:57:26","jid":33,"praiseNum":null,"shareNum":null,"uid":100,"user":{"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T10:54:00","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/100.jpg","latitude":null,"longitude":null,"mobile":"13775854299","money":0,"nickname":"节能君","password":"123123","praiseNum":null,"token":"2169FEE6F3AC42D662EFF44250A0BD87","uid":100,"userId":null,"username":"13775854299"}},{"commentNum":null,"content":"nonunion你弄您","createTime":"2017-11-26T19:01:12","jid":32,"praiseNum":null,"shareNum":null,"uid":71,"user":{"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T10:54:55","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/71.jpg","latitude":null,"longitude":null,"mobile":"18612991023","money":0,"nickname":"123456","password":"111111","praiseNum":null,"token":"58231D3E963D88765BB0130473BD3636","uid":71,"userId":null,"username":"18612991023"}},{"commentNum":null,"content":"nonunion你弄您","createTime":"2017-11-26T16:34:08","jid":31,"praiseNum":null,"shareNum":null,"uid":71,"user":{"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T10:54:55","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/71.jpg","latitude":null,"longitude":null,"mobile":"18612991023","money":0,"nickname":"123456","password":"111111","praiseNum":null,"token":"58231D3E963D88765BB0130473BD3636","uid":71,"userId":null,"username":"18612991023"}},{"commentNum":null,"content":"nonunion你弄您","createTime":"2017-11-26T16:32:43","jid":30,"praiseNum":null,"shareNum":null,"uid":71,"user":{"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T10:54:55","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/71.jpg","latitude":null,"longitude":null,"mobile":"18612991023","money":0,"nickname":"123456","password":"111111","praiseNum":null,"token":"58231D3E963D88765BB0130473BD3636","uid":71,"userId":null,"username":"18612991023"}}]
+     * data : [{"commentNum":null,"content":"胖的原因大概是瘦小的身体容不下我这完美的人格","createTime":"2017-11-30T10:24:45","imgUrls":null,"jid":329,"praiseNum":null,"shareNum":null,"uid":146,"user":{"age":null,"fans":"null","follow":"null","icon":"https://www.zhaoapi.cn/images/146.jpg","nickname":"昵称是一个萝卜","praiseNum":"null"}},{"commentNum":null,"content":"分享一个#内涵段子#: 上次在服务区里听见一首歌，挺好听的，开头是噔噔蹬蹬噔噔蹬蹬噔噔蹬蹬，有人知道是什么歌吗？","createTime":"2017-11-30T10:24:25","imgUrls":"https://www.zhaoapi.cn/images/quarter/151196967322720171129233416.jpg|https://www.zhaoapi.cn/images/quarter/151197023083620171129234333.jpg|https://www.zhaoapi.cn/images/quarter/1512002490602ic_default_share.png|https://www.zhaoapi.cn/images/quarter/1512003459383gp1809635322017-11-13.png|https://www.zhaoapi.cn/images/quarter/1512003460008SHOUTAO_2017-11-03_10-38-27.jpg|https://www.zhaoapi.cn/images/quarter/15120056546181511921049947.jpeg|https://www.zhaoapi.cn/images/quarter/151200722261876ef60d55dacc9ae.jpg|https://www.zhaoapi.cn/images/quarter/15120073407271512006233291.gif|https://www.zhaoapi.cn/images/quarter/1512007340758gp1809635322017-11-13.png|https://www.zhaoapi.cn/images/quarter/151200743530551c8da27a646f7fd.jpg|https://www.zhaoapi.cn/images/quarter/15120074354771512006233291.gif|https://www.zhaoapi.cn/images/quarter/1512007435618gp1809635322017-11-13.png|https://www.zhaoapi.cn/images/quarter/15120076012581512006233291.gif|https://www.zhaoapi.cn/images/quarter/1512007661946null1511094952594.jpg|https://www.zhaoapi.cn/images/quarter/1512007823493product_desc_background.9.png|https://www.zhaoapi.cn/images/quarter/1512008122852tu.jpg|https://www.zhaoapi.cn/images/quarter/151200835325820171130101853.jpg|https://www.zhaoapi.cn/images/quarter/151200835325820171130101901.jpg|https://www.zhaoapi.cn/images/quarter/151200860418020171130102310.jpg|https://www.zhaoapi.cn/images/quarter/151200860418020171130102317.jpg|https://www.zhaoapi.cn/images/quarter/1512008650508截屏_20171124_141936.png|https://www.zhaoapi.cn/images/quarter/1512008665290截屏_20171124_141936.png","jid":328,"praiseNum":null,"shareNum":null,"uid":99,"user":{"age":null,"fans":"null","follow":"null","icon":"https://www.zhaoapi.cn/images/99.jpg","nickname":"Zhu","praiseNum":"null"}},{"commentNum":null,"content":"分享一个#内涵段子#: 上次在服务区里听见一首歌，挺好听的，开头是噔噔蹬蹬噔噔蹬蹬噔噔蹬蹬，有人知道是什么歌吗？","createTime":"2017-11-30T10:24:10","imgUrls":"https://www.zhaoapi.cn/images/quarter/151196967322720171129233416.jpg|https://www.zhaoapi.cn/images/quarter/151197023083620171129234333.jpg|https://www.zhaoapi.cn/images/quarter/1512002490602ic_default_share.png|https://www.zhaoapi.cn/images/quarter/1512003459383gp1809635322017-11-13.png|https://www.zhaoapi.cn/images/quarter/1512003460008SHOUTAO_2017-11-03_10-38-27.jpg|https://www.zhaoapi.cn/images/quarter/15120056546181511921049947.jpeg|https://www.zhaoapi.cn/images/quarter/151200722261876ef60d55dacc9ae.jpg|https://www.zhaoapi.cn/images/quarter/15120073407271512006233291.gif|https://www.zhaoapi.cn/images/quarter/1512007340758gp1809635322017-11-13.png|https://www.zhaoapi.cn/images/quarter/151200743530551c8da27a646f7fd.jpg|https://www.zhaoapi.cn/images/quarter/15120074354771512006233291.gif|https://www.zhaoapi.cn/images/quarter/1512007435618gp1809635322017-11-13.png|https://www.zhaoapi.cn/images/quarter/15120076012581512006233291.gif|https://www.zhaoapi.cn/images/quarter/1512007661946null1511094952594.jpg|https://www.zhaoapi.cn/images/quarter/1512007823493product_desc_background.9.png|https://www.zhaoapi.cn/images/quarter/1512008122852tu.jpg|https://www.zhaoapi.cn/images/quarter/151200835325820171130101853.jpg|https://www.zhaoapi.cn/images/quarter/151200835325820171130101901.jpg|https://www.zhaoapi.cn/images/quarter/151200860418020171130102310.jpg|https://www.zhaoapi.cn/images/quarter/151200860418020171130102317.jpg|https://www.zhaoapi.cn/images/quarter/1512008650508截屏_20171124_141936.png","jid":327,"praiseNum":null,"shareNum":null,"uid":99,"user":{"age":null,"fans":"null","follow":"null","icon":"https://www.zhaoapi.cn/images/99.jpg","nickname":"Zhu","praiseNum":"null"}},{"commentNum":null,"content":"妈妈：\u201c跟你说过多少次了，不懂应该问老师。\u201d\n孩子：\u201c我问过了，老师不肯说。\u201d\n妈妈：\u201c什么时候？\u201d\n孩子：\u201c就在昨天考试时。\u201d","createTime":"2017-11-30T10:23:24","imgUrls":"https://www.zhaoapi.cn/images/quarter/151196967322720171129233416.jpg|https://www.zhaoapi.cn/images/quarter/151197023083620171129234333.jpg|https://www.zhaoapi.cn/images/quarter/1512002490602ic_default_share.png|https://www.zhaoapi.cn/images/quarter/1512003459383gp1809635322017-11-13.png|https://www.zhaoapi.cn/images/quarter/1512003460008SHOUTAO_2017-11-03_10-38-27.jpg|https://www.zhaoapi.cn/images/quarter/15120056546181511921049947.jpeg|https://www.zhaoapi.cn/images/quarter/151200722261876ef60d55dacc9ae.jpg|https://www.zhaoapi.cn/images/quarter/15120073407271512006233291.gif|https://www.zhaoapi.cn/images/quarter/1512007340758gp1809635322017-11-13.png|https://www.zhaoapi.cn/images/quarter/151200743530551c8da27a646f7fd.jpg|https://www.zhaoapi.cn/images/quarter/15120074354771512006233291.gif|https://www.zhaoapi.cn/images/quarter/1512007435618gp1809635322017-11-13.png|https://www.zhaoapi.cn/images/quarter/15120076012581512006233291.gif|https://www.zhaoapi.cn/images/quarter/1512007661946null1511094952594.jpg|https://www.zhaoapi.cn/images/quarter/1512007823493product_desc_background.9.png|https://www.zhaoapi.cn/images/quarter/1512008122852tu.jpg|https://www.zhaoapi.cn/images/quarter/151200835325820171130101853.jpg|https://www.zhaoapi.cn/images/quarter/151200835325820171130101901.jpg|https://www.zhaoapi.cn/images/quarter/151200860418020171130102310.jpg|https://www.zhaoapi.cn/images/quarter/151200860418020171130102317.jpg","jid":326,"praiseNum":null,"shareNum":null,"uid":92,"user":{"age":null,"fans":"null","follow":"null","icon":"https://www.zhaoapi.cn/images/92.jpg","nickname":"金鳞","praiseNum":"null"}},{"commentNum":null,"content":"儿子：\u201c爸爸，什么叫做女汉子\u201d 爸爸：\u201c你觉得呢？\u201d 儿子：\u201c是那些骂人抽烟喝酒打架的女孩吗？\u201d 爸爸：\u201c不是，女汉子是那些自理能力强，会洗衣做饭，照顾人时温文尔雅，处理事时性格像男生，不斤斤计较，没那么多事的女孩。\u201d 儿子：\u201c那我说的那些叫什么呀？\u201d 爸爸：\u201c孩子，那些叫傻B！\u201d","createTime":"2017-11-30T10:23:03","imgUrls":null,"jid":325,"praiseNum":null,"shareNum":null,"uid":188,"user":{"age":null,"fans":"null","follow":"null","icon":"https://www.zhaoapi.cn/images/188.jpg","nickname":"我是张鹤岗","praiseNum":"null"}},{"commentNum":null,"content":"前几年我和我的哥们开路虎去西藏自驾游。回来的路上压死一头羊。不过羊主人很热情。不但羊宰了给我们吃。还把我们送到火车站。火车上看着窗外的风景心里一阵感动","createTime":"2017-11-30T10:22:13","imgUrls":null,"jid":324,"praiseNum":null,"shareNum":null,"uid":86,"user":{"age":null,"fans":"null","follow":"null","icon":"https://www.zhaoapi.cn/images/86.jpg","nickname":"GUODONG","praiseNum":"null"}}]
      */
 
     private String msg;
@@ -45,18 +45,20 @@ public class ForgeBean {
     public static class DataBean {
         /**
          * commentNum : null
-         * content : jinghzongyoushankoujizhe
-         * createTime : 2017-11-28T10:05:27
-         * jid : 39
+         * content : 胖的原因大概是瘦小的身体容不下我这完美的人格
+         * createTime : 2017-11-30T10:24:45
+         * imgUrls : null
+         * jid : 329
          * praiseNum : null
          * shareNum : null
-         * uid : 551
-         * user : {"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-28T10:39:26","email":null,"fans":null,"follow":null,"gender":0,"icon":"https://www.zhaoapi.cn/images/551.jpg","latitude":null,"longitude":null,"mobile":"15988888888","money":0,"nickname":"你猜","password":"111111","praiseNum":null,"token":"AD7D76CB63F7A5E17C64A14A4FE588D1","uid":551,"userId":null,"username":"15988888888"}
+         * uid : 146
+         * user : {"age":null,"fans":"null","follow":"null","icon":"https://www.zhaoapi.cn/images/146.jpg","nickname":"昵称是一个萝卜","praiseNum":"null"}
          */
 
         private Object commentNum;
         private String content;
         private String createTime;
+        private String imgUrls;
         private int jid;
         private Object praiseNum;
         private Object shareNum;
@@ -85,6 +87,14 @@ public class ForgeBean {
 
         public void setCreateTime(String createTime) {
             this.createTime = createTime;
+        }
+
+        public String getImgUrls() {
+            return imgUrls;
+        }
+
+        public void setImgUrls(String imgUrls) {
+            this.imgUrls = imgUrls;
         }
 
         public int getJid() {
@@ -130,47 +140,19 @@ public class ForgeBean {
         public static class UserBean {
             /**
              * age : null
-             * appkey : null
-             * appsecret : null
-             * createtime : 2017-11-28T10:39:26
-             * email : null
              * fans : null
              * follow : null
-             * gender : 0
-             * icon : https://www.zhaoapi.cn/images/551.jpg
-             * latitude : null
-             * longitude : null
-             * mobile : 15988888888
-             * money : 0
-             * nickname : 你猜
-             * password : 111111
+             * icon : https://www.zhaoapi.cn/images/146.jpg
+             * nickname : 昵称是一个萝卜
              * praiseNum : null
-             * token : AD7D76CB63F7A5E17C64A14A4FE588D1
-             * uid : 551
-             * userId : null
-             * username : 15988888888
              */
 
             private Object age;
-            private Object appkey;
-            private Object appsecret;
-            private String createtime;
-            private Object email;
-            private Object fans;
-            private Object follow;
-            private int gender;
+            private String fans;
+            private String follow;
             private String icon;
-            private Object latitude;
-            private Object longitude;
-            private String mobile;
-            private int money;
             private String nickname;
-            private String password;
-            private Object praiseNum;
-            private String token;
-            private int uid;
-            private Object userId;
-            private String username;
+            private String praiseNum;
 
             public Object getAge() {
                 return age;
@@ -180,60 +162,20 @@ public class ForgeBean {
                 this.age = age;
             }
 
-            public Object getAppkey() {
-                return appkey;
-            }
-
-            public void setAppkey(Object appkey) {
-                this.appkey = appkey;
-            }
-
-            public Object getAppsecret() {
-                return appsecret;
-            }
-
-            public void setAppsecret(Object appsecret) {
-                this.appsecret = appsecret;
-            }
-
-            public String getCreatetime() {
-                return createtime;
-            }
-
-            public void setCreatetime(String createtime) {
-                this.createtime = createtime;
-            }
-
-            public Object getEmail() {
-                return email;
-            }
-
-            public void setEmail(Object email) {
-                this.email = email;
-            }
-
-            public Object getFans() {
+            public String getFans() {
                 return fans;
             }
 
-            public void setFans(Object fans) {
+            public void setFans(String fans) {
                 this.fans = fans;
             }
 
-            public Object getFollow() {
+            public String getFollow() {
                 return follow;
             }
 
-            public void setFollow(Object follow) {
+            public void setFollow(String follow) {
                 this.follow = follow;
-            }
-
-            public int getGender() {
-                return gender;
-            }
-
-            public void setGender(int gender) {
-                this.gender = gender;
             }
 
             public String getIcon() {
@@ -244,38 +186,6 @@ public class ForgeBean {
                 this.icon = icon;
             }
 
-            public Object getLatitude() {
-                return latitude;
-            }
-
-            public void setLatitude(Object latitude) {
-                this.latitude = latitude;
-            }
-
-            public Object getLongitude() {
-                return longitude;
-            }
-
-            public void setLongitude(Object longitude) {
-                this.longitude = longitude;
-            }
-
-            public String getMobile() {
-                return mobile;
-            }
-
-            public void setMobile(String mobile) {
-                this.mobile = mobile;
-            }
-
-            public int getMoney() {
-                return money;
-            }
-
-            public void setMoney(int money) {
-                this.money = money;
-            }
-
             public String getNickname() {
                 return nickname;
             }
@@ -284,52 +194,12 @@ public class ForgeBean {
                 this.nickname = nickname;
             }
 
-            public String getPassword() {
-                return password;
-            }
-
-            public void setPassword(String password) {
-                this.password = password;
-            }
-
-            public Object getPraiseNum() {
+            public String getPraiseNum() {
                 return praiseNum;
             }
 
-            public void setPraiseNum(Object praiseNum) {
+            public void setPraiseNum(String praiseNum) {
                 this.praiseNum = praiseNum;
-            }
-
-            public String getToken() {
-                return token;
-            }
-
-            public void setToken(String token) {
-                this.token = token;
-            }
-
-            public int getUid() {
-                return uid;
-            }
-
-            public void setUid(int uid) {
-                this.uid = uid;
-            }
-
-            public Object getUserId() {
-                return userId;
-            }
-
-            public void setUserId(Object userId) {
-                this.userId = userId;
-            }
-
-            public String getUsername() {
-                return username;
-            }
-
-            public void setUsername(String username) {
-                this.username = username;
             }
         }
     }

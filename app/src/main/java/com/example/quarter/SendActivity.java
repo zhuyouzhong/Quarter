@@ -1,6 +1,8 @@
 package com.example.quarter;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import com.yancy.imageselector.ImageConfig;
 import com.yancy.imageselector.ImageSelector;
 import com.yancy.imageselector.ImageSelectorActivity;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +44,8 @@ public class SendActivity extends BaseActivity<SendPersenter> implements SendVie
     private ImageView iv_shangchuan;
     private ArrayList<String> path = new ArrayList<>();
     private MySendRecycleView mySendRecycleView;
+
+
 
     @Override
     public SendPersenter initPresenter() {
@@ -61,10 +67,7 @@ public class SendActivity extends BaseActivity<SendPersenter> implements SendVie
         et_center = findViewById(R.id.et_center);
 
         initOkClick();
-
     }
-
-
 
     private void initOkClick() {
         tv_quxiao.setOnClickListener(new View.OnClickListener() {
@@ -82,8 +85,32 @@ public class SendActivity extends BaseActivity<SendPersenter> implements SendVie
                     Toast.makeText(SendActivity.this, "内容不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                presenter.SendPresenterSuccess(MyInterceptor.id,center);
-                finish();
+                if(path.size()==0)
+                {
+                    presenter.SendPresenterSuccess(MyInterceptor.id,center,null);
+                }
+                else
+                {
+                    presenter.SendPresenterSuccess(MyInterceptor.id,center,path);
+                }
+
+                ProgressDialog mypDialog=new ProgressDialog(SendActivity.this);
+                      //实例化
+                          mypDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        //设置进度条风格，风格为圆形，旋转的
+                          mypDialog.setTitle("提示");
+                            //设置ProgressDialog 标题
+                           mypDialog.setMessage("正在上传...");
+                          //设置ProgressDialog 提示信息
+                           mypDialog.setIcon(R.drawable.ic_launcher_background);
+                           //设置ProgressDialog 标题图标
+                            mypDialog.setIndeterminate(false);
+                           //设置ProgressDialog 的进度条是否不明确
+                           mypDialog.setCancelable(true);
+                            //设置ProgressDialog 是否可以按退回按键取消
+                             mypDialog.show();
+                            //让ProgressDialog显示
+
             }
         });
         iv_shangchuan.setOnClickListener(new View.OnClickListener() {
@@ -125,15 +152,28 @@ public class SendActivity extends BaseActivity<SendPersenter> implements SendVie
 
     @Override
     public void SendSuccess(SendBean value) {
-        Toast.makeText(this, value.getMsg(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, value.getMsg(), Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(SendActivity.this,SendSuccessActivity.class);
+            startActivity(intent);
+            finish();
+
     }
 
     @Override
     public void SendFailue(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(SendActivity.this,MainActivity.class);
-        startActivity(intent);
-        finish();
+        if(msg.equals("1"))
+        {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        }
+        if(msg.equals("2"))
+        {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+            SharedPreferences sp = getSharedPreferences("ZHI", MODE_PRIVATE);
+            sp.edit().clear().commit();
+            Intent intent=new Intent(SendActivity.this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -154,7 +194,10 @@ public class SendActivity extends BaseActivity<SendPersenter> implements SendVie
             path.addAll(pathList);
             mySendRecycleView.notifyDataSetChanged();
         }
+        for (String s : path) {
+            System.out.println("----图片路径----"+s.toString());
 
+        }
         Toast.makeText(this, ""+path.size(), Toast.LENGTH_SHORT).show();
     }
 }

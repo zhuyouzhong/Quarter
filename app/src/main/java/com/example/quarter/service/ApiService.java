@@ -8,10 +8,14 @@ import com.example.quarter.bean.UserBean;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 /**
  * Created by 祝文 on 2017/11/13.
@@ -34,7 +38,10 @@ public interface ApiService {
   @POST("quarter/getJokes")
   Observable<ForgeBean> getJokes(@Field("page") String page);
 
-  @FormUrlEncoded
+  /*@FormUrlEncoded
   @POST("quarter/publishJoke")
-  Observable<SendBean> getpublishJoke(@Field("uid") String uid, @Field("content") String content);
+  Observable<SendBean> getpublishJoke(@Field("uid") String uid, @Field("content") String content);*/
+  @Multipart
+  @POST("quarter/publishJoke")
+  Observable<SendBean> getpublishJoke(@Part() List<MultipartBody.Part> file);
 }

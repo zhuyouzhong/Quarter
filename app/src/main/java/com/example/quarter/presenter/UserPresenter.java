@@ -23,8 +23,19 @@ public class UserPresenter extends BasePresenter<UserView> implements UserModel.
     {
         userModel.GetUserInfo(uid);
     }
+
     @Override
-    public void UserSuccess(UserBean userBean) {
-        userView.UserSuccess(userBean);
+    public void UserSuccess(UserBean value) {
+        userView.UserSuccess(value);
+    }
+
+    @Override
+    public void UserFaiul(String msg) {
+        userView.UserFaiul(msg);
+    }
+
+    @Override
+    public void UserError(Throwable e) {
+        userView.UserError(e);
     }
 }

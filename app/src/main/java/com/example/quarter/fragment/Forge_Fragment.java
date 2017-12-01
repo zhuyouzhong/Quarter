@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,8 @@ public class Forge_Fragment extends Fragment implements ForgeView{
     private List<ForgeBean.DataBean> list;
     private ForgePresenter forgePresenter;
     private MyXRecyclViewAdapter myXRecyclViewAdapter;
+    private int width;
+    private int heightPixels;
 
 
     @Nullable
@@ -49,6 +52,11 @@ public class Forge_Fragment extends Fragment implements ForgeView{
         forgePresenter = new ForgePresenter(this);
         forgePresenter.ForgePresenterSuccess(""+page);
 
+        DisplayMetrics metric = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metric);
+        width = metric.widthPixels;
+        heightPixels = metric.heightPixels;
+        System.out.println("屏幕宽度="+ width);
     }
 
     @Override
@@ -71,7 +79,7 @@ public class Forge_Fragment extends Fragment implements ForgeView{
          list.addAll(forgeBean.getData());
         if(myXRecyclViewAdapter==null)
         {
-            myXRecyclViewAdapter = new MyXRecyclViewAdapter(list,getContext());
+            myXRecyclViewAdapter = new MyXRecyclViewAdapter(list,getContext(),width,heightPixels);
             xrlv.setAdapter(myXRecyclViewAdapter);
             xrlv.setLayoutManager(new LinearLayoutManager(getContext()));
         }

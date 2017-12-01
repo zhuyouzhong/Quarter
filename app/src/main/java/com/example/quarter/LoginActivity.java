@@ -22,6 +22,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     private SharedPreferences.Editor edit;
     private SharedPreferences.Editor edit_uid;
+    private SharedPreferences.Editor edit3;
+    private SharedPreferences.Editor edit2;
 
     @Override
     public LoginPresenter initPresenter() {
@@ -43,6 +45,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         final EditText et_login_mobile=findViewById(R.id.et_login_mobile);
         final EditText et_login_password=findViewById(R.id.et_login_password);
         TextView tv_dl=findViewById(R.id.tv_dl);
+
         iv_login_lefts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,20 +69,20 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         tv_dl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String login_mobile= et_login_mobile.getText().toString();
-                String login_password= et_login_password.getText().toString();
-                if(TextUtils.isEmpty(login_mobile))
-                {
-                    Toast.makeText(LoginActivity.this, "请输入手机号", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(login_password))
-                {
-                    Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                    String login_mobile= et_login_mobile.getText().toString();
+                    String login_password= et_login_password.getText().toString();
+                    if(TextUtils.isEmpty(login_mobile))
+                    {
+                        Toast.makeText(LoginActivity.this, "请输入手机号", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(TextUtils.isEmpty(login_password))
+                    {
+                        Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    presenter.LoginPresenterSuccess(login_mobile,login_password);
 
-                presenter.LoginPresenterSuccess(login_mobile,login_password);
             }
         });
 
@@ -97,9 +100,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             }
         });
         SharedPreferences token = getSharedPreferences("token", MODE_PRIVATE);
-        edit = token.edit();
+        this.edit = token.edit();
         SharedPreferences uid = getSharedPreferences("uid", MODE_PRIVATE);
         edit_uid = uid.edit();
+
+        SharedPreferences sp = getSharedPreferences("ZHI", MODE_PRIVATE);
+        edit2 = sp.edit();
     }
 
     @Override
@@ -107,15 +113,18 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         System.out.println("------"+loginBean.getMsg());
         if(loginBean.getCode().equals("0"))
         {
+            edit.putString("tk",loginBean.getData().getToken());
+            edit.commit();
+            edit_uid.putString("id",""+loginBean.getData().getUid());
+            edit_uid.commit();
+            edit2.putBoolean("zhi",true);
+            edit2.commit();
             Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.tran_next_jin,R.anim.tran_next_chu);
             finish();
-            edit.putString("tk",loginBean.getData().getToken());
-            edit.commit();
-            edit_uid.putString("id",""+loginBean.getData().getUid());
-            edit_uid.commit();
+
         }
         if(loginBean.getCode().equals("1"))
         {

@@ -2,6 +2,7 @@ package com.example.quarter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,16 +24,31 @@ public class MainActivity extends AppCompatActivity {
         initView();
     }
     private void initView() {
-        TextView tv_outher= findViewById(R.id.tv_outher);
-        tv_outher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.tran_next_jin,R.anim.tran_next_chu);
-                finish();
-            }
-        });
+
+        SharedPreferences sp = getSharedPreferences("ZHI", MODE_PRIVATE);
+        boolean zhi = sp.getBoolean("zhi", false);
+        if(zhi==false)
+        {
+            TextView tv_outher= findViewById(R.id.tv_outher);
+            tv_outher.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.tran_next_jin,R.anim.tran_next_chu);
+                    finish();
+                }
+            });
+
+        }
+       else
+       {
+           Intent intent=new Intent(MainActivity.this,HomeActivity.class);
+           startActivity(intent);
+           finish();
+       }
+
+
     }
     public void onResume() {
         super.onResume();

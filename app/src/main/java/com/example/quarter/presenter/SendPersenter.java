@@ -5,6 +5,9 @@ import com.example.quarter.bean.SendBean;
 import com.example.quarter.model.SendModel;
 import com.example.quarter.view.SendView;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import okhttp3.ResponseBody;
 
 /**
@@ -22,9 +25,9 @@ public class SendPersenter extends BasePresenter<SendView> implements SendModel.
         sendModel.setSendModelResponse(this);
     }
 
-    public void SendPresenterSuccess(String uid,String content)
+    public void SendPresenterSuccess(String uid, String content, ArrayList<String> path)
     {
-        sendModel.Send(uid,content);
+        sendModel.Send(uid,content,path);
     }
 
     @Override

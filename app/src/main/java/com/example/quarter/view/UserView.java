@@ -7,5 +7,7 @@ import com.example.quarter.bean.UserBean;
  */
 
 public interface UserView {
-    void UserSuccess(UserBean userBean);
+    void UserSuccess(UserBean value);
+    void UserFaiul(String msg);
+    void UserError(Throwable e);
 }

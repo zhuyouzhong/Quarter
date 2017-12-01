@@ -129,6 +129,12 @@
         android:layout_height="wrap_content"
         android:text="dsfdgfdbgf"
         android:padding="10dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/iv_rlv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
