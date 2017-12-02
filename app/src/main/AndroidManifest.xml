@@ -48,7 +48,9 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".CreateActivity" />
         <activity android:name=".SendActivity" />
-        <activity android:name=".SendSuccessActivity"></activity>
+        <activity android:name=".SendSuccessActivity" />
+        <activity android:name=".CenterActivity" />
+        <activity android:name=".ShezhiActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.quarter.service;
 
 import com.example.quarter.bean.ForgeBean;
+import com.example.quarter.bean.Guanggao;
 import com.example.quarter.bean.LoginBean;
 import com.example.quarter.bean.SendBean;
 import com.example.quarter.bean.UserBean;
@@ -38,10 +39,18 @@ public interface ApiService {
   @POST("quarter/getJokes")
   Observable<ForgeBean> getJokes(@Field("page") String page);
 
-  /*@FormUrlEncoded
-  @POST("quarter/publishJoke")
-  Observable<SendBean> getpublishJoke(@Field("uid") String uid, @Field("content") String content);*/
   @Multipart
   @POST("quarter/publishJoke")
   Observable<SendBean> getpublishJoke(@Part() List<MultipartBody.Part> file);
+
+  @Multipart
+  @POST("file/upload")
+  Observable<SendBean> upload(@Part() List<MultipartBody.Part> file);
+
+  @FormUrlEncoded
+  @POST("user/updateNickName")
+  Observable<SendBean> updateNickName(@Field("uid") String uid,@Field("nickname") String nickname);
+
+  @POST("quarter/getAd")
+  Observable<Guanggao> getAd();
 }

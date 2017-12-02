@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.stx.xhb.xbanner.XBanner
+        android:id="@+id/xbanner"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:AutoPlayTime="2000"
+        app:pointsVisibility="false">
+    </com.stx.xhb.xbanner.XBanner>
+</LinearLayout>

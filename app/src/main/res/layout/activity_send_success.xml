@@ -1,9 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.quarter.SendSuccessActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/groombacgroud">
+        <ImageView
+
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+           android:src="@drawable/success_jt"/>
+        <TextView
+            android:id="@+id/iv_success_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回"
+            android:textSize="16dp"
+            android:layout_marginLeft="25dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/groom"
+             />
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/success_dui"
+        android:layout_marginTop="80dp"
+        android:id="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/tv_yy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:text="发表成功,快去邀请小伙伴们围观吧!" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_yy"
+        android:layout_margin="30dp"
+        android:id="@+id/linearLayout">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:gravity="center"
+           >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/success_qq"
+                android:padding="5dp"
+                android:background="@drawable/success_backgroud"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QQ好友"
+                android:textColor="#000"
+                android:textSize="14dp"
+                android:layout_marginTop="5dp"
+               />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/success_kj"
+                android:padding="5dp"
+                android:background="@drawable/success_backgroud"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QQ空间"
+                android:textColor="#000"
+                android:textSize="14dp"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/success_pyq"
+                android:padding="5dp"
+                android:background="@drawable/success_backgroud"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="朋友圈"
+                android:textColor="#000"
+                android:textSize="14dp"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/success_wx"
+                android:padding="5dp"
+                android:background="@drawable/success_backgroud"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信"
+                android:textColor="#000"
+                android:textSize="14dp"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:text="前去看看 ! !"
+        android:textColor="@color/groom"
+        android:background="@drawable/back_kankan"/>
+</RelativeLayout>

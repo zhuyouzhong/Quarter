@@ -213,6 +213,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/ll_shezhi"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:orientation="vertical"

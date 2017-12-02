@@ -156,7 +156,6 @@ public class SendActivity extends BaseActivity<SendPersenter> implements SendVie
             Intent intent=new Intent(SendActivity.this,SendSuccessActivity.class);
             startActivity(intent);
             finish();
-
     }
 
     @Override

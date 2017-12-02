@@ -51,6 +51,7 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
     private TextView tv_nickname;
     private TextView tv_tuijian;
     private ImageView iv_send;
+    private LinearLayout ll_shezhi;
 
     @Override
     public UserPresenter initPresenter() {
@@ -87,8 +88,34 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
         tv_groom.setTextColor(getResources().getColor(R.color.textcolor));
         rl_left_run = findViewById(R.id.rl_left_run);
         iv_send = findViewById(R.id.iv_send);
+        ll_shezhi = findViewById(R.id.ll_shezhi);
         initOnClick();
 
+      /*  SharedPreferences token = MyApp.context.getSharedPreferences("token", Context.MODE_PRIVATE);
+        String tk = token.getString("tk", "");
+        SharedPreferences uid = MyApp.context.getSharedPreferences("uid", Context.MODE_PRIVATE);
+        String id = uid.getString("id", "");
+        if(!TextUtils.isEmpty(tk)||!TextUtils.isEmpty(id))
+        {
+            presenter.UserPersenterSuccess(id);
+        }
+        else
+        {
+            rl_left_run.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(HomeActivity.this, "请登录", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(HomeActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         SharedPreferences token = MyApp.context.getSharedPreferences("token", Context.MODE_PRIVATE);
         String tk = token.getString("tk", "");
         SharedPreferences uid = MyApp.context.getSharedPreferences("uid", Context.MODE_PRIVATE);
@@ -113,8 +140,8 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
 
     @Override
     public void UserSuccess(final UserBean value) {
-            String icon = value.getData().getIcon();
-            String nickname = value.getData().getNickname();
+        String icon = value.getData().getIcon();
+        String nickname = value.getData().getNickname();
             if(icon!=null)
             {
                 Glide.with(HomeActivity.this).load(icon)
@@ -130,17 +157,20 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
             rl_left_run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(value.getCode().equals("0"))
-                {
-                    Toast.makeText(HomeActivity.this, "個人中心", Toast.LENGTH_SHORT).show();
-                }
-                if(value.getCode().equals("2"))
-                {
-                    Toast.makeText(HomeActivity.this, "Token過期", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(HomeActivity.this,MainActivity.class);
+                String icon = value.getData().getIcon();
+                String nickname = value.getData().getNickname();
+                String mobile = value.getData().getMobile();
+                System.out.println("---tu---"+icon);
+                System.out.println("---tu---"+nickname);
+                System.out.println("---tu---"+mobile);
+
+                Intent intent=new Intent(HomeActivity.this,CenterActivity.class);
+                intent.putExtra("icon",icon);
+                intent.putExtra("nickname",nickname);
+                intent.putExtra("mobile",mobile);
                     startActivity(intent);
-                    finish();
-                }
+                    Toast.makeText(HomeActivity.this, "個人中心", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -148,7 +178,22 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
 
     @Override
     public void UserFaiul(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        if(msg.equals("1"))
+        {
+            Toast.makeText(HomeActivity.this, "网络有误", Toast.LENGTH_SHORT).show();
+        }
+        if(msg.equals("2"))
+        {
+            rl_left_run.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(HomeActivity.this, "Token過期", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(HomeActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }
     }
 
     @Override
@@ -223,6 +268,13 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
             public void onClick(View view) {
                 Intent intent=new Intent(HomeActivity.this,CreateActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        ll_shezhi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,ShezhiActivity.class));
             }
         });
     }
