@@ -12,8 +12,10 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.quarter.R;
 import com.example.quarter.adapter.MyTuijianHotXRecycleView;
+import com.example.quarter.bean.GroomHotBean;
 import com.example.quarter.bean.Guanggao;
 import com.example.quarter.presenter.GuanggaoPresent;
+import com.example.quarter.utils.MyInterceptor;
 import com.example.quarter.view.GuanggaoView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.stx.xhb.xbanner.XBanner;
@@ -32,7 +34,8 @@ public class Hot_Fragment extends Fragment implements GuanggaoView{
     private ArrayList<String> list;
     private XRecyclerView tj_hot_xrl;
     private View inflate;
-    private ArrayList<String> ls;
+    private ArrayList<GroomHotBean.DataBean> ls;
+    private MyTuijianHotXRecycleView myTuijianHotXRecycleView;
 
     @Nullable
     @Override
@@ -48,7 +51,7 @@ public class Hot_Fragment extends Fragment implements GuanggaoView{
         initView();
         initData();
         GuanggaoPresent guanggaoPresent=new GuanggaoPresent(this);
-        guanggaoPresent.GuanggaoPresentSuccess();
+        guanggaoPresent.GuanggaoPresentSuccess(MyInterceptor.id,"1","1");
 
     }
 
@@ -79,12 +82,33 @@ public class Hot_Fragment extends Fragment implements GuanggaoView{
                 Glide.with(getContext()).load(list.get(position)).into((ImageView) view);
             }
         });
-        for (int i = 0; i <ls.size() ; i++) {
-            ls.add("条目"+i);
+
+    }
+
+    @Override
+    public void GuanggaoFailue(String msg) {
+
+    }
+
+    @Override
+    public void GuanggaoError(Throwable e) {
+
+    }
+
+    @Override
+    public void GroomHotSuccess(GroomHotBean value) {
+        System.out.println("视频列表+"+value.getMsg());
+        ls.addAll(value.getData());
+        if(myTuijianHotXRecycleView==null)
+        {
+            myTuijianHotXRecycleView = new MyTuijianHotXRecycleView(ls,getContext());
+            tj_hot_xrl.setLayoutManager(new LinearLayoutManager(getContext()));
+            tj_hot_xrl.setAdapter(myTuijianHotXRecycleView);
         }
-        MyTuijianHotXRecycleView myTuijianHotXRecycleView=new MyTuijianHotXRecycleView(ls,getContext());
-        tj_hot_xrl.setLayoutManager(new LinearLayoutManager(getContext()));
-        tj_hot_xrl.setAdapter(myTuijianHotXRecycleView);
+     else
+        {
+            myTuijianHotXRecycleView.notifyDataSetChanged();
+        }
         tj_hot_xrl.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
@@ -100,12 +124,12 @@ public class Hot_Fragment extends Fragment implements GuanggaoView{
     }
 
     @Override
-    public void GuanggaoFailue(String msg) {
-
+    public void GroomHotFailue(String msg) {
+        System.out.println("视频列表+"+msg);
     }
 
     @Override
-    public void GuanggaoError(Throwable e) {
+    public void GroomHotError(Throwable e) {
 
     }
 }

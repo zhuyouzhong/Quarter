@@ -56,4 +56,9 @@ dependencies {
 
     compile 'com.xhb:xbanner:1.2.2'
     compile 'com.nineoldandroids:library:2.4.0'
+
+    compile 'com.amap.api:location:3.3.0'
+
+
+
 }

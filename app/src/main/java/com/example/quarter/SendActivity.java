@@ -3,8 +3,6 @@ package com.example.quarter;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -116,31 +114,32 @@ public class SendActivity extends BaseActivity<SendPersenter> implements SendVie
         iv_shangchuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 ImageConfig imageConfig = new ImageConfig.Builder(
                         // GlideLoader 可用自己用的缓存库
                         new GlideLoader())
                         // 如果在 4.4 以上，则修改状态栏颜色 （默认黑色）
                         .steepToolBarColor(getResources().getColor(R.color.blue))
                         // 标题的背景颜色 （默认黑色）
-                                        .titleBgColor(getResources().getColor(R.color.blue))
-                                       // 提交按钮字体的颜色  （默认白色）
-                                        .titleSubmitTextColor(getResources().getColor(R.color.white))
-                                        // 标题颜色 （默认白色）
-                                        .titleTextColor(getResources().getColor(R.color.white))
-                                      // 开启多选   （默认为多选）  (单选 为 singleSelect)
-                                     .mutiSelect()
-                                    //剪切
-                                     //.crop()
-                                       // 多选时的最大数量   （默认 9 张）
-                                     .mutiSelectMaxSize(9)
-                                       // 已选择的图片路径
-                                      .pathList(path)
-                                       // 拍照后存放的图片路径（默认 /temp/picture）
-                                      .filePath("/ImageSelector/Pictures")
-                                      // 开启拍照功能 （默认开启）
-                                     .showCamera()
-                                     .requestCode(REQUEST_CODE)
-                                    .build();
+                        .titleBgColor(getResources().getColor(R.color.blue))
+                        // 提交按钮字体的颜色  （默认白色）
+                        .titleSubmitTextColor(getResources().getColor(R.color.white))
+                        // 标题颜色 （默认白色）
+                        .titleTextColor(getResources().getColor(R.color.white))
+                        // 开启多选   （默认为多选）  (单选 为 singleSelect)
+                        .mutiSelect()
+                        //剪切
+                        //.crop()
+                        // 多选时的最大数量   （默认 9 张）
+                        .mutiSelectMaxSize(9)
+                        // 已选择的图片路径
+                        .pathList(path)
+                        // 拍照后存放的图片路径（默认 /temp/picture）
+                        .filePath("/ImageSelector/Pictures")
+                        // 开启拍照功能 （默认开启）
+                        .showCamera()
+                        .requestCode(REQUEST_CODE)
+                        .build();
                 ImageSelector.open(SendActivity.this, imageConfig);   // 开启图片选择器
                 mySendRecycleView = new MySendRecycleView(path,SendActivity.this);
                 rlv_iv.setLayoutManager(new GridLayoutManager(SendActivity.this,3));

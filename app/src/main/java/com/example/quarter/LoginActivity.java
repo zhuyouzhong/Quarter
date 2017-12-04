@@ -124,7 +124,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             startActivity(intent);
             overridePendingTransition(R.anim.tran_next_jin,R.anim.tran_next_chu);
             finish();
-
+            System.out.println("-----token-----"+loginBean.getData().getToken());
         }
         if(loginBean.getCode().equals("1"))
         {

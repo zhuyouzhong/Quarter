@@ -1,6 +1,7 @@
 package com.example.quarter.service;
 
 import com.example.quarter.bean.ForgeBean;
+import com.example.quarter.bean.GroomHotBean;
 import com.example.quarter.bean.Guanggao;
 import com.example.quarter.bean.LoginBean;
 import com.example.quarter.bean.SendBean;
@@ -53,4 +54,8 @@ public interface ApiService {
 
   @POST("quarter/getAd")
   Observable<Guanggao> getAd();
+
+  @FormUrlEncoded
+  @POST("quarter/getVideos")
+  Observable<GroomHotBean> getVideos(@Field("uid") String uid,@Field("type") String type,@Field("page") String page);
 }
