@@ -27,8 +27,8 @@ import java.util.Date;
  */
 
 public class Video_Fragment extends Fragment{
-    private AMapLocationClient locationClient = null;
-    private AMapLocationClientOption locationOption = null;
+  /*  private AMapLocationClient locationClient = null;
+    private AMapLocationClientOption locationOption = null;*/
     private View view;
     private TabLayout video_tablayout;
     private ViewPager video_groom_vp;
@@ -47,13 +47,13 @@ public class Video_Fragment extends Fragment{
         initData();
 
 
-        locationClient = new AMapLocationClient(getActivity().getApplicationContext());
+      /*  locationClient = new AMapLocationClient(getActivity().getApplicationContext());
         locationOption = getDefaultOption();
-//设置定位参数
+        //设置定位参数
         locationClient.setLocationOption(locationOption);
         // 设置定位监听
         locationClient.setLocationListener(locationListener);
-        locationClient.startLocation();
+        locationClient.startLocation();*/
     }
 
 
@@ -79,7 +79,7 @@ public class Video_Fragment extends Fragment{
     }
 
 
-    private AMapLocationClientOption getDefaultOption() {
+ /*   private AMapLocationClientOption getDefaultOption() {
         AMapLocationClientOption mOption = new AMapLocationClientOption();
         mOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);//可选，设置定位模式，可选的模式有高精度、仅设备、仅网络。默认为高精度模式
         mOption.setGpsFirst(false);//可选，设置是否gps优先，只在高精度模式下有效。默认关闭
@@ -108,5 +108,5 @@ public class Video_Fragment extends Fragment{
             });
 
         }
-    };
+    };*/
 }

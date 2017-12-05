@@ -36,6 +36,8 @@ public class Hot_Fragment extends Fragment implements GuanggaoView{
     private View inflate;
     private ArrayList<GroomHotBean.DataBean> ls;
     private MyTuijianHotXRecycleView myTuijianHotXRecycleView;
+    private int page=1;
+    private GuanggaoPresent guanggaoPresent;
 
     @Nullable
     @Override
@@ -50,7 +52,7 @@ public class Hot_Fragment extends Fragment implements GuanggaoView{
 
         initView();
         initData();
-        GuanggaoPresent guanggaoPresent=new GuanggaoPresent(this);
+        guanggaoPresent = new GuanggaoPresent(this);
         guanggaoPresent.GuanggaoPresentSuccess(MyInterceptor.id,"1","1");
 
     }
@@ -75,6 +77,7 @@ public class Hot_Fragment extends Fragment implements GuanggaoView{
             String icon = dataBean.getIcon();
             list.add(icon);
         }
+        xbanner.removeAllViews();
         xbanner.setData(list,null);
         xbanner.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
@@ -112,11 +115,18 @@ public class Hot_Fragment extends Fragment implements GuanggaoView{
         tj_hot_xrl.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
+                System.out.println("刷新");
+                ls.clear();
+                page=1;
+                guanggaoPresent.GuanggaoPresentSuccess(MyInterceptor.id,"1",page+"");
                 tj_hot_xrl.refreshComplete();
             }
 
             @Override
             public void onLoadMore() {
+                System.out.println("加载更多");
+                page++;
+                guanggaoPresent.GuanggaoPresentSuccess(MyInterceptor.id,"1",page+"");
                 tj_hot_xrl.loadMoreComplete();
             }
         });

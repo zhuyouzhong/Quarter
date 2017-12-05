@@ -80,6 +80,8 @@
         <service android:name="com.amap.api.location.APSService"></service>
         <meta-data android:name="com.amap.api.v2.apikey" android:value="b858fd62f1f1218acaf5432a0054eb2e">
         </meta-data>
+
+
     </application>
 
 </manifest>

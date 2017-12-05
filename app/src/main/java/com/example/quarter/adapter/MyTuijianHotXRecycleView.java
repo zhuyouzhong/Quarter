@@ -3,6 +3,7 @@ package com.example.quarter.adapter;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,13 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.dou361.ijkplayer.listener.OnShowThumbnailListener;
+import com.dou361.ijkplayer.widget.IjkVideoView;
+import com.dou361.ijkplayer.widget.PlayStateParams;
+import com.dou361.ijkplayer.widget.PlayerView;
 import com.example.quarter.R;
 import com.example.quarter.bean.GroomHotBean;
+import com.example.quarter.myapp.MyApp;
 import com.meg7.widget.CustomShapeImageView;
 
 import java.util.ArrayList;
@@ -28,6 +36,7 @@ import java.util.ArrayList;
 public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotXRecycleView.MyViewHolder> {
     private ArrayList<GroomHotBean.DataBean> list;
     private Context context;
+
 
     public MyTuijianHotXRecycleView(ArrayList<GroomHotBean.DataBean> list, Context context) {
         this.list = list;
@@ -42,10 +51,13 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
 
     @Override
     public void onBindViewHolder(final MyTuijianHotXRecycleView.MyViewHolder holder, final int position) {
-
-        Glide.with(context).load(list.get(position).getUser().getIcon())
+        holder.setIsRecyclable(false);
+        /*Glide.with(context).load(list.get(position).getUser().getIcon())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true).dontAnimate().into(holder.forge_item_icon);
+                .skipMemoryCache(true).dontAnimate().into(holder.forge_item_icon);*/
+        RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
+        Glide.with(context).load(list.get(position).getUser().getIcon())
+                .apply(options).into(holder.forge_item_icon);
 
         holder.forge_item_nickname.setText(""+list.get(position).getUser().getNickname());
         holder.forge_item_createtime.setText(list.get(position).getCreateTime());
@@ -145,7 +157,32 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
                 Toast.makeText(context, "条目为+"+position, Toast.LENGTH_SHORT).show();
             }
         });
+
+         View inflate = LayoutInflater.from(context).inflate(R.layout.simple_player_view_player, holder.rlv_player);
+        String videoUrl = list.get(position).getVideoUrl();
+        String replace = videoUrl.replace("https://www.zhaoapi.cn", "http://120.27.23.105");
+        System.out.println("视频路径+++++"+replace);
+        PlayerView playerVie=new PlayerView((Activity) context,inflate)
+                .setScaleType(PlayStateParams.fitparent)
+                .hideMenu(true)
+                .forbidTouch(false)
+                .showThumbnail(new OnShowThumbnailListener() {
+            @Override
+            public void onShowThumbnail(ImageView ivThumbnail) {
+                /**加载前显示的缩略图*/
+                Glide.with(context)
+                        .load(list.get(position).getCover())
+                        .into(ivThumbnail);
+            }
+        })
+            .hideBack(true)
+                .setPlaySource(replace);
+        playerVie.startPlay();
+
+
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -162,18 +199,21 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
         private final LinearLayout ll_yi;
         private final LinearLayout ll_er;
         private final LinearLayout ll_san;
+        private final RelativeLayout rlv_player;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
             forge_item_icon = itemView.findViewById(R.id.forge_item_icon);
             forge_item_nickname=itemView.findViewById(R.id.forge_item_nickname);
             forge_item_createtime=itemView.findViewById(R.id.forge_item_createtime);
-
             iv_jian = itemView.findViewById(R.id.iv_jian);
             iv_jia = itemView.findViewById(R.id.iv_jia);
             ll_yi = itemView.findViewById(R.id.ll_yi);
             ll_er = itemView.findViewById(R.id.ll_er);
             ll_san = itemView.findViewById(R.id.ll_san);
+
+            rlv_player = itemView.findViewById(R.id.rlv_player);
 
         }
     }

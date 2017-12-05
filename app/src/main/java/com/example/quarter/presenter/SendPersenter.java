@@ -1,9 +1,13 @@
 package com.example.quarter.presenter;
 
+import android.content.SharedPreferences;
+
 import com.example.quarter.base.BasePresenter;
 import com.example.quarter.bean.SendBean;
 import com.example.quarter.model.SendModel;
+import com.example.quarter.myapp.MyApp;
 import com.example.quarter.view.SendView;
+import com.luck.picture.lib.entity.LocalMedia;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,9 +29,19 @@ public class SendPersenter extends BasePresenter<SendView> implements SendModel.
         sendModel.setSendModelResponse(this);
     }
 
-    public void SendPresenterSuccess(String uid, String content, ArrayList<String> path)
+    public void SendPresenterSuccess(String uid, String content, ArrayList<String> path, File videopath, File coverpath, String videoDesc, String latitude, String longitude)
     {
-        sendModel.Send(uid,content,path);
+        final SharedPreferences jz = MyApp.context.getSharedPreferences("JZ", MyApp.context.MODE_PRIVATE);
+        boolean jz1 = jz.getBoolean("jz", true);
+        if(jz1==true)
+        {
+            sendModel.Send(uid,content,path);
+        }
+      else
+        {
+            sendModel.SendVideo(uid,videopath,coverpath,videoDesc,latitude,longitude);
+
+        }
     }
 
     @Override

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.quarter.HomeActivity;
 import com.example.quarter.R;
 import com.example.quarter.bean.ForgeBean;
@@ -56,9 +57,12 @@ public class MyXRecyclViewAdapter extends RecyclerView.Adapter<MyXRecyclViewAdap
     public void onBindViewHolder(final MyXRecyclViewAdapter.MyViewHolder holder, final int position) {
 
         holder.setIsRecyclable(false);
-        Glide.with(context).load(list.get(position).getUser().getIcon())
+      /*  Glide.with(context).load(list.get(position).getUser().getIcon())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true).dontAnimate().into(holder.forge_item_icon);
+                .skipMemoryCache(true).dontAnimate().into(holder.forge_item_icon);*/
+        RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
+        Glide.with(context).load(list.get(position).getUser().getIcon())
+                .apply(options).into(holder.forge_item_icon);
 
         holder.forge_item_nickname.setText(list.get(position).getUser().getNickname());
         holder.forge_item_createtime.setText(list.get(position).getCreateTime());

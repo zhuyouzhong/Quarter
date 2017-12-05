@@ -1,5 +1,7 @@
 package com.example.quarter.model;
 
+import com.luck.picture.lib.entity.LocalMedia;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -9,4 +11,5 @@ import java.util.ArrayList;
 
 public interface ISendModel {
     void Send(String uid,String content,ArrayList<String> path);
+    void SendVideo(String uid, File videopath,File coverpath, String videoDesc, String latitude, String longitude);
 }

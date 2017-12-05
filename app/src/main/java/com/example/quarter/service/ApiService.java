@@ -58,4 +58,8 @@ public interface ApiService {
   @FormUrlEncoded
   @POST("quarter/getVideos")
   Observable<GroomHotBean> getVideos(@Field("uid") String uid,@Field("type") String type,@Field("page") String page);
+
+  @Multipart
+  @POST("quarter/publishVideo")
+  Observable<SendBean> publishVideo(@Part() List<MultipartBody.Part> file);
 }

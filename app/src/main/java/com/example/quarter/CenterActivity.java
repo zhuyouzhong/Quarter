@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.quarter.base.BaseActivity;
 import com.example.quarter.bean.SendBean;
 import com.example.quarter.bean.UserBean;
@@ -69,9 +70,12 @@ public class CenterActivity extends BaseActivity<UploadPresent> implements Uploa
         String icon = intent.getStringExtra("icon");
         String nickname = intent.getStringExtra("nickname");
         String mobile = intent.getStringExtra("mobile");
-        Glide.with(CenterActivity.this).load(icon)
+       /* Glide.with(CenterActivity.this).load(icon)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true).dontAnimate().into(iv_geren_touxiang);
+                    .skipMemoryCache(true).dontAnimate().into(iv_geren_touxiang);*/
+        RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
+        Glide.with(CenterActivity.this).load(icon)
+                .apply(options).into(iv_geren_touxiang);
         tv_geren_name.setText(mobile);
         tv_geren_nicheng.setText(nickname);
         initOnClick();
@@ -168,9 +172,12 @@ public class CenterActivity extends BaseActivity<UploadPresent> implements Uploa
             }
             list.clear();
             list.addAll(pathList);
-            Glide.with(CenterActivity.this).load(s1)
+           /* Glide.with(CenterActivity.this).load(s1)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true).dontAnimate().into(iv_geren_touxiang);
+                    .skipMemoryCache(true).dontAnimate().into(iv_geren_touxiang);*/
+            RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
+            Glide.with(CenterActivity.this).load(s1)
+                    .apply(options).into(iv_geren_touxiang);
             presenter.UploadPresentSuccess(MyInterceptor.id,list);
         }
     }

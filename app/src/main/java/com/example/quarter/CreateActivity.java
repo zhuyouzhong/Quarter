@@ -1,6 +1,7 @@
 package com.example.quarter;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ public class CreateActivity extends AppCompatActivity {
     private TextView tv_quxiao;
     private LinearLayout ll_shipin;
     private LinearLayout ll_duanzi;
+    private SharedPreferences.Editor edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,8 @@ public class CreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
+        SharedPreferences jz = getSharedPreferences("JZ", MODE_PRIVATE);
+        edit = jz.edit();
         initView();
         initOnClick();
     }
@@ -35,7 +39,19 @@ public class CreateActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(CreateActivity.this,SendActivity.class);
                 startActivity(intent);
-                finish();
+                edit.putBoolean("jz",true);
+                edit.commit();
+
+            }
+        });
+        ll_shipin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(CreateActivity.this,SendActivity.class);
+                startActivity(intent);
+                edit.putBoolean("jz",false);
+                edit.commit();
+
             }
         });
     }

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.quarter.base.BaseActivity;
 import com.example.quarter.bean.UserBean;
 import com.example.quarter.fragment.Forge_Fragment;
@@ -144,12 +145,17 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
         String nickname = value.getData().getNickname();
             if(icon!=null)
             {
-                Glide.with(HomeActivity.this).load(icon)
+               /* Glide.with(HomeActivity.this).load(icon)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true).dontAnimate().into(csiv);
                 Glide.with(HomeActivity.this).load(icon)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true).dontAnimate().into(draw_csiv);
+                        .skipMemoryCache(true).dontAnimate().into(draw_csiv);*/
+                RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
+                Glide.with(HomeActivity.this).load(icon)
+                        .apply(options).into(csiv);
+               Glide.with(HomeActivity.this).load(icon)
+                        .apply(options).into(draw_csiv);
             }
 
             tv_nickname.setText(nickname);

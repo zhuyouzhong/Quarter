@@ -4,6 +4,9 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.quarter.HomeActivity;
+import com.example.quarter.R;
 import com.yancy.imageselector.ImageLoader;
 
 /**
@@ -13,10 +16,13 @@ import com.yancy.imageselector.ImageLoader;
 public class GlideLoader implements ImageLoader {
     @Override
     public void displayImage(Context context, String path, ImageView imageView) {
-        Glide.with(context)
+       /* Glide.with(context)
                 .load(path)
                 .placeholder(com.yancy.imageselector.R.mipmap.imageselector_photo)
                 .centerCrop()
-                .into(imageView);
+                .into(imageView);*/
+        RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
+        Glide.with(context).load(path)
+                .apply(options).into(imageView);
     }
 }
