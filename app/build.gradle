@@ -61,7 +61,6 @@ dependencies {
 
     compile 'com.amap.api:location:3.3.0'
 
-
     /*
     * 视频播放器的 依赖*/
     compile 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.6'

@@ -21,8 +21,7 @@ public class CreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
-        SharedPreferences jz = getSharedPreferences("JZ", MODE_PRIVATE);
-        edit = jz.edit();
+
         initView();
         initOnClick();
     }
@@ -39,18 +38,16 @@ public class CreateActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(CreateActivity.this,SendActivity.class);
                 startActivity(intent);
-                edit.putBoolean("jz",true);
-                edit.commit();
+
 
             }
         });
         ll_shipin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(CreateActivity.this,SendActivity.class);
+
+                Intent intent=new Intent(CreateActivity.this,SendVideoActivity.class);
                 startActivity(intent);
-                edit.putBoolean("jz",false);
-                edit.commit();
 
             }
         });

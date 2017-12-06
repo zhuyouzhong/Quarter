@@ -99,19 +99,6 @@ public class GuanggaoModel implements IGroomHotModel{
                 });
     }
 
-   /* //视频列表接口
-    public GroomHotModelSuccess groomHotModelSuccess;
-
-    public void setGroomHotModelSuccess(GroomHotModelSuccess groomHotModelSuccess) {
-        this.groomHotModelSuccess = groomHotModelSuccess;
-    }
-    public interface GroomHotModelSuccess
-    {
-        void GroomHotSuccess(GroomHotBean value);
-        void GroomHotFailue(String msg);
-        void GroomHotError(Throwable e);
-
-    }*/
 
     //广告的接口
     public GuanggaoModelSuccess guanggaoModelSuccess;

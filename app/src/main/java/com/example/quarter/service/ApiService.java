@@ -6,6 +6,7 @@ import com.example.quarter.bean.Guanggao;
 import com.example.quarter.bean.LoginBean;
 import com.example.quarter.bean.SendBean;
 import com.example.quarter.bean.UserBean;
+import com.example.quarter.bean.UserVideoBean;
 
 import java.util.List;
 
@@ -62,4 +63,10 @@ public interface ApiService {
   @Multipart
   @POST("quarter/publishVideo")
   Observable<SendBean> publishVideo(@Part() List<MultipartBody.Part> file);
+
+
+  @FormUrlEncoded
+  @POST("quarter/getUserVideos")
+  Observable<UserVideoBean> getUserVideos(@Field("uid") String uid, @Field("page") String page);
+
 }

@@ -17,51 +17,52 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.dou361.ijkplayer.listener.OnShowThumbnailListener;
-import com.dou361.ijkplayer.widget.IjkVideoView;
 import com.dou361.ijkplayer.widget.PlayStateParams;
 import com.dou361.ijkplayer.widget.PlayerView;
 import com.example.quarter.R;
 import com.example.quarter.UserVideoActivity;
 import com.example.quarter.bean.GroomHotBean;
-import com.example.quarter.myapp.MyApp;
+import com.example.quarter.bean.UserVideoBean;
 import com.meg7.widget.CustomShapeImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 祝文 on 2017/12/2.
  */
 
-public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotXRecycleView.MyViewHolder> {
-    private ArrayList<GroomHotBean.DataBean> list;
+public class MyUserVideoXRecycleView extends RecyclerView.Adapter<MyUserVideoXRecycleView.MyViewHolder> {
+    private List<UserVideoBean.DataBean> list;
     private Context context;
+    private String icon;
+    private String name;
 
-
-    public MyTuijianHotXRecycleView(ArrayList<GroomHotBean.DataBean> list, Context context) {
+    public MyUserVideoXRecycleView(List<UserVideoBean.DataBean> list, Context context, String icon, String name) {
         this.list = list;
         this.context = context;
+        this.icon = icon;
+        this.name = name;
     }
 
+
+
     @Override
-    public MyTuijianHotXRecycleView.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyUserVideoXRecycleView.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.tuijian_hot, null);
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final MyTuijianHotXRecycleView.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MyUserVideoXRecycleView.MyViewHolder holder, final int position) {
         holder.setIsRecyclable(false);
-        /*Glide.with(context).load(list.get(position).getUser().getIcon())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true).dontAnimate().into(holder.forge_item_icon);*/
-        RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
-        Glide.with(context).load(list.get(position).getUser().getIcon())
-                .apply(options).into(holder.forge_item_icon);
 
-        holder.forge_item_nickname.setText(""+list.get(position).getUser().getNickname());
+        RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
+        Glide.with(context).load(icon)
+                .apply(options).into(holder.forge_item_icon);
+        holder.forge_item_nickname.setText(name);
         holder.forge_item_createtime.setText(list.get(position).getCreateTime());
 
 
@@ -153,7 +154,7 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
             }
         });
 
-        holder.forge_item_icon.setOnClickListener(new View.OnClickListener() {
+       /* holder.forge_item_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "条目为+"+list.get(position).getUid(), Toast.LENGTH_SHORT).show();
@@ -165,7 +166,7 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
                 context.startActivity(intent);
             }
         });
-
+*/
          View inflate = LayoutInflater.from(context).inflate(R.layout.simple_player_view_player, holder.rlv_player);
         String videoUrl = list.get(position).getVideoUrl();
         String replace = videoUrl.replace("https://www.zhaoapi.cn", "http://120.27.23.105");

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.quarter.SendVideoActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/play"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="gone"></RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_dong"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitXY"
+        android:visibility="visible"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        >
+        <ImageView
+            android:id="@+id/iv_geren_zuojiantou"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/success_jt"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/tv_fanhui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回"
+            android:layout_centerVertical="true"
+            android:textSize="16dp"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/groom"/>
+        <TextView
+            android:text="拍照"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/groom"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="300dp"
+        android:background="#A2DEFA">
+        <ImageView
+            android:id="@+id/iv_anniu"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/anniu"
+            android:layout_centerInParent="true"/>
+        <Button
+            android:id="@+id/bt_xyb"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#29B6F6"
+            android:text="下一步"
+            android:textColor="#fff"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+</RelativeLayout>
