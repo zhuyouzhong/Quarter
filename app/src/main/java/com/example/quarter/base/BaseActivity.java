@@ -20,7 +20,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+    getSupportActionBar().hide();
 
         super.onCreate(savedInstanceState);
 

@@ -76,6 +76,15 @@ public class GroomHotBean {
         private int wid;
         private String workDesc;
         private List<?> comments;
+        private boolean isopen;
+
+        public void setIsopen(boolean isopen) {
+            this.isopen = isopen;
+        }
+
+        public boolean isIsopen() {
+            return isopen;
+        }
 
         public int getCommentNum() {
             return commentNum;

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.quarter.R;
 
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class MyItemRecycleView extends RecyclerView.Adapter<MyItemRecycleView.My
             int i = heightPixels / 2;
             params.height=i;
             holder.iv_item_item.setLayoutParams(params);
+
+           // RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
             Glide.with(context).load(iv_list.get(position)).into(holder.iv_item_item);
         }
         else if(iv_list.size()==2)
@@ -56,10 +59,13 @@ public class MyItemRecycleView extends RecyclerView.Adapter<MyItemRecycleView.My
             int i = kuan / 2;
             params.width=i;
             holder.iv_item_item.setLayoutParams(params);
+            //RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
             Glide.with(context).load(iv_list.get(position)).into(holder.iv_item_item);
+
         }
         else
         {
+            //RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
             Glide.with(context).load(iv_list.get(position)).into(holder.iv_item_item);
         }
 

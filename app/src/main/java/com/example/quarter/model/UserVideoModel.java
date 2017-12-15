@@ -1,6 +1,8 @@
 package com.example.quarter.model;
 
 import com.example.quarter.bean.Guanggao;
+import com.example.quarter.bean.SendBean;
+import com.example.quarter.bean.UserBean;
 import com.example.quarter.bean.UserVideoBean;
 import com.example.quarter.utils.NetRequestUtils;
 
@@ -58,6 +60,90 @@ public class UserVideoModel implements IUserVideoModel {
                 });
     }
 
+    @Override
+    public void User(String uid) {
+        new NetRequestUtils.Builder().addConverterFactory(GsonConverterFactory.create())
+                .addCalladaperFactory(RxJava2CallAdapterFactory.create())
+                .build().getApiService().getUserInfo(uid)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UserBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(UserBean userBean) {
+                        if(userBean.getCode().equals("0"))
+                        {
+                            userVideoReson.UserSuccess(userBean);
+                        }
+                        else if(userBean.getCode().equals("1"))
+                        {
+                            userVideoReson.UserFailue(userBean.getCode());
+                        }
+                        else
+                        {
+                            userVideoReson.UserFailue(userBean.getCode());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        userVideoReson.UserError(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void Guanzhu(String uid,String followId) {
+        new NetRequestUtils.Builder().addConverterFactory(GsonConverterFactory.create())
+                .addCalladaperFactory(RxJava2CallAdapterFactory.create())
+                .build().getApiService().getfollow(uid,followId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                 .subscribe(new Observer<SendBean>() {
+                     @Override
+                     public void onSubscribe(Disposable d) {
+
+                     }
+
+                     @Override
+                     public void onNext(SendBean sendBean) {
+                         if(sendBean.getCode().equals("0"))
+                         {
+                             userVideoReson.GuanzhuSuccess(sendBean);
+                         }
+                         else if(sendBean.getCode().equals("1"))
+                         {
+                             userVideoReson.GuanzhuFailue(sendBean.getCode());
+                         }
+                         else
+                         {
+                             userVideoReson.GuanzhuFailue(sendBean.getCode());
+                         }
+                     }
+
+                     @Override
+                     public void onError(Throwable e) {
+                         userVideoReson.GuanzhuError(e);
+                     }
+
+                     @Override
+                     public void onComplete() {
+
+                     }
+                 });
+    }
+
+
+
     public UserVideoReson userVideoReson;
 
     public void setUserVideoReson(UserVideoReson userVideoReson) {
@@ -68,5 +154,13 @@ public class UserVideoModel implements IUserVideoModel {
         void UserVideoSuccess(UserVideoBean userVideoBean);
         void UserVideoFailue(String msg);
         void UserVideoError(Throwable e);
+
+        void UserSuccess(UserBean userBean);
+        void UserFailue(String msg);
+        void UserError(Throwable e);
+
+        void GuanzhuSuccess(SendBean sendBean);
+        void GuanzhuFailue(String msg);
+        void GuanzhuError(Throwable e);
     }
 }

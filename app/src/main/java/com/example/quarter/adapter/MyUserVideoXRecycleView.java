@@ -185,9 +185,8 @@ public class MyUserVideoXRecycleView extends RecyclerView.Adapter<MyUserVideoXRe
             }
         })
             .hideBack(true)
+                .hideCenterPlayer(false)
                 .setPlaySource(replace);
-        playerVie.startPlay();
-
 
 
     }

@@ -7,6 +7,7 @@ import com.example.quarter.bean.LoginBean;
 import com.example.quarter.bean.SendBean;
 import com.example.quarter.bean.UserBean;
 import com.example.quarter.bean.UserVideoBean;
+import com.example.quarter.bean.VersionBean;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -37,9 +40,13 @@ public interface ApiService {
   @POST("user/getUserInfo")
   Observable<UserBean> getUserInfo(@Field("uid") String uid);
 
-  @FormUrlEncoded
+  /*@FormUrlEncoded
   @POST("quarter/getJokes")
-  Observable<ForgeBean> getJokes(@Field("page") String page);
+  Observable<ForgeBean> getJokes(@Field("page") String page);*/
+  //20秒缓存
+  @Headers("cache:20")
+  @GET("quarter/getJokes")
+  Observable<ForgeBean> getJokes(@Query("page") String page);
 
   @Multipart
   @POST("quarter/publishJoke")
@@ -68,5 +75,19 @@ public interface ApiService {
   @FormUrlEncoded
   @POST("quarter/getUserVideos")
   Observable<UserVideoBean> getUserVideos(@Field("uid") String uid, @Field("page") String page);
+
+
+  @FormUrlEncoded
+  @POST("quarter/getHotVideos")
+  Observable<UserVideoBean> getHotVideos(@Field("page") String page);
+
+
+  @FormUrlEncoded
+  @POST("quarter/follow")
+  Observable<SendBean> getfollow(@Field("uid") String uid,@Field("followId") String followId);
+
+
+  @POST("quarter/getVersion")
+  Observable<VersionBean> getVersion();
 
 }

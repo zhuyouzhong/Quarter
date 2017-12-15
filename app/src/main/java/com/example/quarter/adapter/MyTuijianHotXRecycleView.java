@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,9 +58,13 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
         /*Glide.with(context).load(list.get(position).getUser().getIcon())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true).dontAnimate().into(holder.forge_item_icon);*/
+
         RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
-        Glide.with(context).load(list.get(position).getUser().getIcon())
-                .apply(options).into(holder.forge_item_icon);
+        if(list.get(position).getUser().getIcon()!=null)
+        {
+            Glide.with(context).load(list.get(position).getUser().getIcon())
+                    .apply(options).into(holder.forge_item_icon);
+        }
 
         holder.forge_item_nickname.setText(""+list.get(position).getUser().getNickname());
         holder.forge_item_createtime.setText(list.get(position).getCreateTime());
@@ -129,40 +134,66 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
 
             }
         });
-        holder.iv_jia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnimatorSet animSet = new AnimatorSet();//动画集合
-                holder.ll_yi.setVisibility(View.VISIBLE);
-                holder.ll_er.setVisibility(View.VISIBLE);
-                holder.ll_san.setVisibility(View.VISIBLE);
-                animSet.play(animator).with(animator1).with(animator2).with(animator3);
-                animSet.play(animator4).with(animator5).with(animator6).with(animator7);
-                animSet.setDuration(500);
-                animSet.start();
-            }
-        });
-        holder.iv_jian.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AnimatorSet animSet1 = new AnimatorSet();//动画集合
-                animSet1.play(rotation).with(rotation1).with(rotation2).with(rotation3);
-                animSet1.play(rotation4).with(rotation5).with(rotation6).with(rotation7);
-                animSet1.setDuration(500);
-                animSet1.start();
-            }
-        });
+
+            holder.iv_jia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                        AnimatorSet animSet = new AnimatorSet();//jia
+                        holder.ll_yi.setVisibility(View.VISIBLE);
+                        holder.ll_er.setVisibility(View.VISIBLE);
+                        holder.ll_san.setVisibility(View.VISIBLE);
+                        animSet.play(animator).with(animator1).with(animator2).with(animator3);
+                        animSet.play(animator4).with(animator5).with(animator6).with(animator7);
+                        animSet.setDuration(500);
+                        animSet.start();
+                        list.get(position).setIsopen(true);
+
+                }
+            });
+
+            holder.iv_jian.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                        AnimatorSet animSet1 = new AnimatorSet();//jian
+                        animSet1.play(rotation).with(rotation1).with(rotation2).with(rotation3);
+                        animSet1.play(rotation4).with(rotation5).with(rotation6).with(rotation7);
+                        animSet1.setDuration(500);
+                        animSet1.start();
+                        list.get(position).setIsopen(false);
+                }
+            });
+
+       /* if(list.get(position).isIsopen()==true)
+        {
+
+            holder.ll_yi.setVisibility(View.VISIBLE);
+            holder.ll_er.setVisibility(View.VISIBLE);
+            holder.ll_san.setVisibility(View.VISIBLE);
+            holder.iv_jia.setVisibility(View.GONE);
+            holder.iv_jian.setVisibility(View.VISIBLE);
+
+        }
+        if(list.get(position).isIsopen()==false)
+        {
+            holder.ll_yi.setVisibility(View.GONE);
+            holder.ll_er.setVisibility(View.GONE);
+            holder.ll_san.setVisibility(View.GONE);
+            holder.iv_jia.setVisibility(View.VISIBLE);
+            holder.iv_jian.setVisibility(View.GONE);
+        }*/
 
         holder.forge_item_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "条目为+"+list.get(position).getUid(), Toast.LENGTH_SHORT).show();
 
+                Toast.makeText(context, "条目为+"+list.get(position).getUid(), Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(context, UserVideoActivity.class);
                 intent.putExtra("icon",list.get(position).getUser().getIcon());
                 intent.putExtra("uid",list.get(position).getUid()+"");
                 intent.putExtra("name",list.get(position).getUser().getNickname()+"");
+
                 context.startActivity(intent);
+
             }
         });
 
@@ -184,8 +215,9 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
             }
         })
             .hideBack(true)
+                .hideCenterPlayer(false)
                 .setPlaySource(replace);
-        playerVie.startPlay();
+
 
 
 

@@ -37,6 +37,7 @@
             android:layout_centerInParent="true"/>
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/rl_update"
         android:background="#ffff"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -123,6 +124,7 @@
         android:layout_height="1px"
         android:background="#E1E1E3"></View>
     <RelativeLayout
+        android:id="@+id/rl_deleter"
         android:background="#ffff"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -137,6 +139,7 @@
             />
 
         <TextView
+            android:id="@+id/tv_daxiao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

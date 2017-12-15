@@ -1,11 +1,14 @@
 package com.example.quarter.utils;
 
 import com.example.quarter.api.ApiUtils;
+import com.example.quarter.myapp.MyApp;
 import com.example.quarter.service.ApiService;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
@@ -47,8 +50,22 @@ public class NetRequestUtils {
 
         public NetRequestUtils build()
         {
-            OkHttpClient client=new OkHttpClient.Builder().addInterceptor(new MyInterceptor()).build();
+
+            //缓存容量
+            long SIZE_OF_CACHE = 10 * 1024 * 1024; // 10 MiB
+            //缓存路径
+            String cacheFile = MyApp.context.getCacheDir()+"/shuju";
+            System.out.println("缓存路径+6+++++++++++++++"+cacheFile);
+            Cache cache = new Cache(new File(cacheFile), SIZE_OF_CACHE);
+
+            OkHttpClient client=new OkHttpClient.Builder()
+                    .addInterceptor(new MyInterceptor())
+                    .addNetworkInterceptor(MyGetInterceptor.REWRITE_RESPONSE_INTERCEPTOR)
+                    .addInterceptor(MyGetInterceptor.REWRITE_RESPONSE_INTERCEPTOR_OFFLINE)
+                    .cache(cache)
+                    .build();
             Retrofit.Builder builder=new Retrofit.Builder().client(client).baseUrl(ApiUtils.URL);
+
             if(converterFactories.size()==0)
             {
                 builder.addConverterFactory(GsonConverterFactory.create());

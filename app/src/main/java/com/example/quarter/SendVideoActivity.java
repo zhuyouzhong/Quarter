@@ -171,7 +171,7 @@ public class SendVideoActivity extends AppCompatActivity {
                             .hideMenu(true)
                             .hideRotation(true)
                             .hideFullscreen(true)
-                            .hideCenterPlayer(true)
+                            .hideCenterPlayer(false)
                             .setShowSpeed(false)
                             .hideBottonBar(true)
                             .hideBottonBar(true)

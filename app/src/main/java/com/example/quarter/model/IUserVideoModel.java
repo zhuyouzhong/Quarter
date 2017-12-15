@@ -5,5 +5,7 @@ package com.example.quarter.model;
  */
 
 public interface IUserVideoModel {
-    void UserVideo(String uid,String page);
+   void UserVideo(String uid,String page);
+     void User(String uid);
+     void Guanzhu(String uid,String followId);
 }

@@ -64,6 +64,8 @@ public class Hot_Fragment extends Fragment implements GuanggaoView{
 
     private void initView() {
         tj_hot_xrl = view.findViewById(R.id.tj_hot_xrl);
+        tj_hot_xrl.setLoadingMoreEnabled(true);
+        tj_hot_xrl.setPullRefreshEnabled(true);
         inflate = LayoutInflater.from(getContext()).inflate(R.layout.top_xbanner, null);
         xbanner = inflate.findViewById(R.id.xbanner);
         tj_hot_xrl.addHeaderView(inflate);
