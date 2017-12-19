@@ -1,6 +1,7 @@
 package com.example.quarter.model;
 
 import com.example.quarter.bean.Guanggao;
+import com.example.quarter.bean.HQUserBean;
 import com.example.quarter.bean.SendBean;
 import com.example.quarter.bean.UserBean;
 import com.example.quarter.bean.UserVideoBean;
@@ -142,6 +143,46 @@ public class UserVideoModel implements IUserVideoModel {
                  });
     }
 
+    @Override
+    public void HQUser(String uid) {
+        new NetRequestUtils.Builder().addConverterFactory(GsonConverterFactory.create())
+                .addCalladaperFactory(RxJava2CallAdapterFactory.create())
+                .build().getApiService().getWorkInfo(uid)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<HQUserBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(HQUserBean sendBean) {
+                        if(sendBean.getCode().equals("0"))
+                        {
+                            userVideoReson.HQUserSuccess(sendBean);
+                        }
+                        else if(sendBean.getCode().equals("1"))
+                        {
+                            userVideoReson.HQUserFailue(sendBean.getCode());
+                        }
+                        else
+                        {
+                            userVideoReson.HQUserFailue(sendBean.getCode());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        userVideoReson.HQUserError(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
 
 
     public UserVideoReson userVideoReson;
@@ -162,5 +203,9 @@ public class UserVideoModel implements IUserVideoModel {
         void GuanzhuSuccess(SendBean sendBean);
         void GuanzhuFailue(String msg);
         void GuanzhuError(Throwable e);
+
+        void HQUserSuccess(HQUserBean sendBean);
+        void HQUserFailue(String msg);
+        void HQUserError(Throwable e);
     }
 }

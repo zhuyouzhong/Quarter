@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,9 @@ import com.dou361.ijkplayer.widget.PlayerView;
 import com.example.quarter.R;
 import com.example.quarter.UserVideoActivity;
 import com.example.quarter.bean.GroomHotBean;
+import com.example.quarter.bean.PingLun;
 import com.example.quarter.bean.UserVideoBean;
+import com.example.quarter.view.GuanggaoView;
 import com.meg7.widget.CustomShapeImageView;
 
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ import java.util.List;
  * Created by 祝文 on 2017/12/2.
  */
 
-public class MyUserVideoXRecycleView extends RecyclerView.Adapter<MyUserVideoXRecycleView.MyViewHolder> {
+public class MyUserVideoXRecycleView extends RecyclerView.Adapter<MyUserVideoXRecycleView.MyViewHolder>{
     private List<UserVideoBean.DataBean> list;
     private Context context;
     private String icon;
@@ -188,6 +191,11 @@ public class MyUserVideoXRecycleView extends RecyclerView.Adapter<MyUserVideoXRe
                 .hideCenterPlayer(false)
                 .setPlaySource(replace);
 
+        if(jieKou!=null)
+        {
+            jieKou.setRlv_pl(holder.rlv_pl,position);
+            jieKou.setLl_pingun(holder.ll_pingun,position);
+        }
 
     }
 
@@ -195,6 +203,18 @@ public class MyUserVideoXRecycleView extends RecyclerView.Adapter<MyUserVideoXRe
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+
+    public JieKou jieKou;
+
+    public void setJieKou(JieKou jieKou) {
+        this.jieKou = jieKou;
+    }
+    public interface JieKou
+    {
+        void setRlv_pl(RecyclerView rlv_pl,int xb);
+        void setLl_pingun(LinearLayout ll_pingun,int xb);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -208,7 +228,8 @@ public class MyUserVideoXRecycleView extends RecyclerView.Adapter<MyUserVideoXRe
         private final LinearLayout ll_er;
         private final LinearLayout ll_san;
         private final RelativeLayout rlv_player;
-
+        private final RecyclerView rlv_pl;
+        private final LinearLayout ll_pingun;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -223,6 +244,8 @@ public class MyUserVideoXRecycleView extends RecyclerView.Adapter<MyUserVideoXRe
 
             rlv_player = itemView.findViewById(R.id.rlv_player);
 
+            rlv_pl = itemView.findViewById(R.id.rlv_pl);
+            ll_pingun = itemView.findViewById(R.id.ll_pinglun);
         }
     }
 }

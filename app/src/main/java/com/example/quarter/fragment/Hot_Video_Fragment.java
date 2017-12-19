@@ -53,7 +53,7 @@ public class Hot_Video_Fragment extends Fragment implements VideoHotView{
         super.onActivityCreated(savedInstanceState);
 
         initView();
-       list = new ArrayList<>();
+        list = new ArrayList<>();
         videoHotPresenter = new VideoHotPresenter(this);
         videoHotPresenter.VideoHotPresenterSuccess(page+"");
     }

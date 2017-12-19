@@ -53,6 +53,8 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
     private TextView tv_tuijian;
     private ImageView iv_send;
     private LinearLayout ll_shezhi;
+    private RelativeLayout relativeLayout2;
+    private LinearLayout ll_my_zuopin;
 
     @Override
     public UserPresenter initPresenter() {
@@ -73,6 +75,9 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
         ll_groom = findViewById(R.id.ll_groom);
         ll_forge = findViewById(R.id.ll_forge);
         ll_video = findViewById(R.id.ll_video);
+        relativeLayout2 = findViewById(R.id.relativeLayout2);
+        ll_my_zuopin = findViewById(R.id.ll_my_zuopin);
+
         groom_fragment = new Groom_Fragment();
         forge_fragment = new Forge_Fragment();
         video_fragment = new Video_Fragment();
@@ -92,26 +97,7 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
         ll_shezhi = findViewById(R.id.ll_shezhi);
         initOnClick();
 
-      /*  SharedPreferences token = MyApp.context.getSharedPreferences("token", Context.MODE_PRIVATE);
-        String tk = token.getString("tk", "");
-        SharedPreferences uid = MyApp.context.getSharedPreferences("uid", Context.MODE_PRIVATE);
-        String id = uid.getString("id", "");
-        if(!TextUtils.isEmpty(tk)||!TextUtils.isEmpty(id))
-        {
-            presenter.UserPersenterSuccess(id);
-        }
-        else
-        {
-            rl_left_run.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(HomeActivity.this, "请登录", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(HomeActivity.this,MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-        }*/
+
     }
 
     @Override
@@ -145,12 +131,7 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
         String nickname = value.getData().getNickname();
             if(icon!=null)
             {
-               /* Glide.with(HomeActivity.this).load(icon)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true).dontAnimate().into(csiv);
-                Glide.with(HomeActivity.this).load(icon)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true).dontAnimate().into(draw_csiv);*/
+
                 RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
                 Glide.with(HomeActivity.this).load(icon)
                         .apply(options).into(csiv);
@@ -174,8 +155,8 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
                 intent.putExtra("icon",icon);
                 intent.putExtra("nickname",nickname);
                 intent.putExtra("mobile",mobile);
-                    startActivity(intent);
-                    Toast.makeText(HomeActivity.this, "個人中心", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                Toast.makeText(HomeActivity.this, "個人中心", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -247,7 +228,6 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
                 tv_groom.setTextColor(getResources().getColor(R.color.textcolor_yuan));
                 tv_forge.setTextColor(getResources().getColor(R.color.textcolor));
                 tv_video.setTextColor(getResources().getColor(R.color.textcolor_yuan));
-
                 tv_tuijian.setText("段子");
             }
         });
@@ -281,6 +261,20 @@ public class HomeActivity extends BaseActivity<UserPresenter> implements UserVie
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this,ShezhiActivity.class));
+            }
+        });
+        relativeLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,MyGuanzhuActivity.class));
+
+            }
+        });
+        ll_my_zuopin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,MyZuoPinActivity.class));
+
             }
         });
     }

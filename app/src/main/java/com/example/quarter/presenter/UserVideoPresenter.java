@@ -1,6 +1,7 @@
 package com.example.quarter.presenter;
 
 import com.example.quarter.base.BasePresenter;
+import com.example.quarter.bean.HQUserBean;
 import com.example.quarter.bean.SendBean;
 import com.example.quarter.bean.UserBean;
 import com.example.quarter.bean.UserVideoBean;
@@ -34,6 +35,10 @@ public class UserVideoPresenter extends BasePresenter<UserVideoView> implements 
     public void GuanzhuPresenterSuccess(String uid,String followId)
     {
         userVideoModel.Guanzhu(uid,followId);
+    }
+    public void HQUserPresenterSuccess(String uid)
+    {
+        userVideoModel.HQUser(uid);
     }
 
 
@@ -84,5 +89,20 @@ public class UserVideoPresenter extends BasePresenter<UserVideoView> implements 
     @Override
     public void GuanzhuError(Throwable e) {
         userVideoView.GuanzhuError(e);
+    }
+
+    @Override
+    public void HQUserSuccess(HQUserBean sendBean) {
+        userVideoView.HQUserSuccess(sendBean);
+    }
+
+    @Override
+    public void HQUserFailue(String msg) {
+        userVideoView.HQUserFailue(msg);
+    }
+
+    @Override
+    public void HQUserError(Throwable e) {
+        userVideoView.HQUserError(e);
     }
 }

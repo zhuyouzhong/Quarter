@@ -1,5 +1,6 @@
 package com.example.quarter.view;
 
+import com.example.quarter.bean.HQUserBean;
 import com.example.quarter.bean.SendBean;
 import com.example.quarter.bean.UserBean;
 import com.example.quarter.bean.UserVideoBean;
@@ -20,4 +21,8 @@ public interface UserVideoView {
     void GuanzhuSuccess(SendBean sendBean);
     void GuanzhuFailue(String msg);
     void GuanzhuError(Throwable e);
+
+    void HQUserSuccess(HQUserBean sendBean);
+    void HQUserFailue(String msg);
+    void HQUserError(Throwable e);
 }

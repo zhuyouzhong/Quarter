@@ -5,12 +5,17 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -24,13 +29,20 @@ import com.dou361.ijkplayer.listener.OnShowThumbnailListener;
 import com.dou361.ijkplayer.widget.IjkVideoView;
 import com.dou361.ijkplayer.widget.PlayStateParams;
 import com.dou361.ijkplayer.widget.PlayerView;
+import com.example.quarter.MainActivity;
 import com.example.quarter.R;
 import com.example.quarter.UserVideoActivity;
 import com.example.quarter.bean.GroomHotBean;
+import com.example.quarter.bean.PingLun;
+import com.example.quarter.bean.SendBean;
 import com.example.quarter.myapp.MyApp;
+import com.example.quarter.presenter.VideoPLPresenter;
+import com.example.quarter.utils.MyInterceptor;
+import com.example.quarter.view.VideoPLView;
 import com.meg7.widget.CustomShapeImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 祝文 on 2017/12/2.
@@ -39,11 +51,14 @@ import java.util.ArrayList;
 public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotXRecycleView.MyViewHolder> {
     private ArrayList<GroomHotBean.DataBean> list;
     private Context context;
-
+    //private final VideoPLPresenter videoPLPresenter;
+    private PingLunRecycleView pingLunRecycleView;
 
     public MyTuijianHotXRecycleView(ArrayList<GroomHotBean.DataBean> list, Context context) {
         this.list = list;
         this.context = context;
+
+
     }
 
     @Override
@@ -55,12 +70,9 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
     @Override
     public void onBindViewHolder(final MyTuijianHotXRecycleView.MyViewHolder holder, final int position) {
         holder.setIsRecyclable(false);
-        /*Glide.with(context).load(list.get(position).getUser().getIcon())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true).dontAnimate().into(holder.forge_item_icon);*/
 
         RequestOptions options=new RequestOptions().placeholder(R.mipmap.ic_launcher_round);
-        if(list.get(position).getUser().getIcon()!=null)
+        if(!list.get(position).getUser().getIcon().equals(""))
         {
             Glide.with(context).load(list.get(position).getUser().getIcon())
                     .apply(options).into(holder.forge_item_icon);
@@ -146,7 +158,7 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
                         animSet.play(animator4).with(animator5).with(animator6).with(animator7);
                         animSet.setDuration(500);
                         animSet.start();
-                        list.get(position).setIsopen(true);
+
 
                 }
             });
@@ -159,7 +171,7 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
                         animSet1.play(rotation4).with(rotation5).with(rotation6).with(rotation7);
                         animSet1.setDuration(500);
                         animSet1.start();
-                        list.get(position).setIsopen(false);
+
                 }
             });
 
@@ -185,7 +197,6 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
         holder.forge_item_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Toast.makeText(context, "条目为+"+list.get(position).getUid(), Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(context, UserVideoActivity.class);
                 intent.putExtra("icon",list.get(position).getUser().getIcon());
@@ -217,9 +228,8 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
             .hideBack(true)
                 .hideCenterPlayer(false)
                 .setPlaySource(replace);
-
-
-
+        plJieKou.setrl_plJieKou(holder.rlv_pl,position);
+        plJieKou.setll_plJieKou(holder.ll_pingun,position);
 
     }
 
@@ -240,6 +250,8 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
         private final LinearLayout ll_er;
         private final LinearLayout ll_san;
         private final RelativeLayout rlv_player;
+        private final RecyclerView rlv_pl;
+        private final LinearLayout ll_pingun;
 
 
         public MyViewHolder(View itemView) {
@@ -254,7 +266,19 @@ public class MyTuijianHotXRecycleView extends RecyclerView.Adapter<MyTuijianHotX
             ll_san = itemView.findViewById(R.id.ll_san);
 
             rlv_player = itemView.findViewById(R.id.rlv_player);
-
+            rlv_pl = itemView.findViewById(R.id.rlv_pl);
+            ll_pingun = itemView.findViewById(R.id.ll_pinglun);
         }
     }
+
+    public PLJieKou plJieKou;
+    public void setPlJieKou(PLJieKou plJieKou) {
+        this.plJieKou = plJieKou;
+    }
+    public interface PLJieKou
+    {
+        void setrl_plJieKou(RecyclerView rlv_pl,int p);
+        void setll_plJieKou(LinearLayout ll_pingun,int p);
+    }
+
 }

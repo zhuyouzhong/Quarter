@@ -1,5 +1,7 @@
 package com.example.quarter.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -27,8 +29,8 @@ import java.util.Date;
  */
 
 public class Video_Fragment extends Fragment{
-  /*  private AMapLocationClient locationClient = null;
-    private AMapLocationClientOption locationOption = null;*/
+    private AMapLocationClient locationClient = null;
+    private AMapLocationClientOption locationOption = null;
     private View view;
     private TabLayout video_tablayout;
     private ViewPager video_groom_vp;
@@ -47,13 +49,13 @@ public class Video_Fragment extends Fragment{
         initData();
 
 
-      /*  locationClient = new AMapLocationClient(getActivity().getApplicationContext());
+        locationClient = new AMapLocationClient(getActivity().getApplicationContext());
         locationOption = getDefaultOption();
         //设置定位参数
         locationClient.setLocationOption(locationOption);
         // 设置定位监听
         locationClient.setLocationListener(locationListener);
-        locationClient.startLocation();*/
+        locationClient.startLocation();
     }
 
 
@@ -79,7 +81,7 @@ public class Video_Fragment extends Fragment{
     }
 
 
- /*   private AMapLocationClientOption getDefaultOption() {
+    private AMapLocationClientOption getDefaultOption() {
         AMapLocationClientOption mOption = new AMapLocationClientOption();
         mOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);//可选，设置定位模式，可选的模式有高精度、仅设备、仅网络。默认为高精度模式
         mOption.setGpsFirst(false);//可选，设置是否gps优先，只在高精度模式下有效。默认关闭
@@ -103,10 +105,15 @@ public class Video_Fragment extends Fragment{
                 @Override
                 public void run() {
                     System.out.println("纬度"+aMapLocation.getLatitude() + "+++++经度" + aMapLocation.getLongitude());
+                    SharedPreferences dw = getContext().getSharedPreferences("DW", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edit = dw.edit();
+                    edit.putString("weidu",aMapLocation.getLatitude()+"");
+                    edit.putString("jingdu",aMapLocation.getLongitude()+"");
+                    edit.commit();
                     locationClient.stopLocation();
                 }
             });
 
         }
-    };*/
+    };
 }

@@ -3,11 +3,15 @@ package com.example.quarter.service;
 import com.example.quarter.bean.ForgeBean;
 import com.example.quarter.bean.GroomHotBean;
 import com.example.quarter.bean.Guanggao;
+import com.example.quarter.bean.HQUserBean;
 import com.example.quarter.bean.LoginBean;
+import com.example.quarter.bean.MyGuanzhuBean;
 import com.example.quarter.bean.SendBean;
 import com.example.quarter.bean.UserBean;
 import com.example.quarter.bean.UserVideoBean;
 import com.example.quarter.bean.VersionBean;
+import com.example.quarter.bean.VideoFuJinBean;
+import com.example.quarter.bean.VideoXQBean;
 
 import java.util.List;
 
@@ -89,5 +93,28 @@ public interface ApiService {
 
   @POST("quarter/getVersion")
   Observable<VersionBean> getVersion();
+
+
+  @FormUrlEncoded
+  @POST("quarter/getFollowUsers")
+  Observable<MyGuanzhuBean> getFollowUsers(@Field("uid") String uid);
+
+
+  @FormUrlEncoded
+  @POST("quarter/getWorkInfo")
+  Observable<HQUserBean> getWorkInfo(@Field("uid") String uid);
+
+  @FormUrlEncoded
+  @POST("quarter/getVideoDetail")
+  Observable<VideoXQBean> getVideoDetail(@Field("wid") String wid);
+
+  @FormUrlEncoded
+  @POST("quarter/getNearVideos")
+  Observable<VideoFuJinBean> getNearVideos(@Field("page") String page,@Field("latitude") String latitude,@Field("longitude") String longitude);
+
+
+  @FormUrlEncoded
+  @POST("quarter/comment")
+  Observable<SendBean> comment(@Field("uid") String uid,@Field("wid") String wid,@Field("content") String content);
 
 }

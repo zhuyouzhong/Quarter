@@ -1,9 +1,12 @@
 package com.example.quarter;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.StatFs;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +24,9 @@ import com.example.quarter.myapp.MyApp;
 import com.example.quarter.presenter.UpdatePresenter;
 import com.example.quarter.utils.ClearCache;
 import com.example.quarter.view.UpdateView;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
 
 import java.io.File;
 
@@ -32,7 +38,7 @@ public class ShezhiActivity extends BaseActivity<UpdatePresenter> implements Upd
     private RelativeLayout rl_deleter;
     private RelativeLayout rl_deleter1;
     private RelativeLayout rl_update;
-
+    private ProgressDialog dialog;
 
     @Override
     public UpdatePresenter initPresenter() {
@@ -103,6 +109,8 @@ public class ShezhiActivity extends BaseActivity<UpdatePresenter> implements Upd
             @Override
             public void onClick(View view) {
                 presenter.UpdateSuccessPresenter();
+
+
             }
         });
     }
@@ -113,6 +121,7 @@ public class ShezhiActivity extends BaseActivity<UpdatePresenter> implements Upd
         tv_daxiao = findViewById(R.id.tv_daxiao);
         rl_deleter1 = findViewById(R.id.rl_deleter);
         rl_update = findViewById(R.id.rl_update);
+
         try {
             String totalCacheSize = ClearCache.getTotalCacheSize(ShezhiActivity.this);
             tv_daxiao.setText(totalCacheSize);
@@ -122,9 +131,76 @@ public class ShezhiActivity extends BaseActivity<UpdatePresenter> implements Upd
     }
 
     @Override
-    public void UpdateSuccess(VersionBean versionBean) {
+    public void UpdateSuccess(final VersionBean versionBean) {
         System.out.println("APK"+versionBean.getData().getApkUrl());
+        AlertDialog.Builder a=new AlertDialog.Builder(ShezhiActivity.this)
+                .setTitle("是否更新")
+                .setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //定义保存的文件地址为根目录
+                        File path = new File(Environment.getExternalStorageDirectory(),
+                                "一刻钟"+ ".apk");
+                        httpDownLoad(path.getPath(),versionBean.getData().getApkUrl());
+                    }
+                })
+                .setNegativeButton("稍后", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        a.create().show();
+        dialog=new ProgressDialog(ShezhiActivity.this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        dialog.setMessage("更新应用");
+        dialog.setMax(100);
     }
+
+
+    private void httpDownLoad(String path, String url) {
+        HttpUtils http = new HttpUtils();
+        http.download(url, path, true, true, new RequestCallBack<File>() {
+
+            @Override
+            public void onStart() {
+                super.onStart();
+                dialog.show();
+            }
+
+            @Override
+            public void onLoading(long total, long current, boolean isUploading) {
+                int index = (int) (current * 100 / total);
+                dialog.setProgress(index);
+            }
+
+
+            @Override
+            public void onSuccess(ResponseInfo<File> responseInfo) {
+                //获取到安装包后，调用系统的android安装apk界面进行安装 这是固定格式
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(
+                        Uri.fromFile(new File(responseInfo.result.getPath())),
+                        "application/vnd.android.package-archive");
+                startActivity(intent);
+                dialog.dismiss();
+                ShezhiActivity.this.finish();
+            }
+
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onFailure(
+                    com.lidroid.xutils.exception.HttpException arg0, String arg1) {
+                File path = new File(Environment.getExternalStorageDirectory(),
+                        "一刻钟" + ".apk");
+                Toast.makeText( ShezhiActivity.this, "下载失败"+arg1, 0).show();
+                dialog.dismiss();
+                path.delete();
+            }
+        });
+    }
+
+
 
     @Override
     public void UpdateFailue(String msg) {
